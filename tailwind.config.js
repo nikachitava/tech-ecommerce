@@ -19,6 +19,10 @@ export default {
 				hoverButtonRed: "#E07575",
 				hoverButtonBlue: "#A0BCE0",
 			},
+			fontFamily: {
+				poppins: ["Poppins", "sans-serif"],
+				roboto: ["Roboto", "sans-serif"],
+			},
 		},
 	},
 	plugins: [],
