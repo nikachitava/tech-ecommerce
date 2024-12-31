@@ -1,21 +1,24 @@
 import { type FC } from "react";
 import { Link, useLocation } from "react-router-dom";
 import SearchInput from "./SearchInput";
+import { useTranslation } from "react-i18next";
 
-// interface MenuItem {
-//   name: string;
-//   path: string;
-// }
-
-const menuItems = [
-	{ name: "Home", path: "/" },
-	{ name: "Contact", path: "/contact" },
-	{ name: "About", path: "/about" },
-	{ name: "Sign up", path: "/auth" },
-];
+interface MenuItemsTypes {
+	name: string;
+	translationKey: string;
+	path: string;
+}
 
 export const NavBar: FC = () => {
 	const { pathname } = useLocation();
+	const { t } = useTranslation();
+
+	const menuItems: MenuItemsTypes[] = [
+		{ name: "Home", translationKey: "menuHome", path: "/" },
+		{ name: "Contact", translationKey: "contact", path: "/contact" },
+		{ name: "About", translationKey: "about", path: "/about" },
+		{ name: "Sign up", translationKey: "auth", path: "/auth" },
+	];
 
 	return (
 		<div className="border-b border-button">
@@ -26,7 +29,7 @@ export const NavBar: FC = () => {
 
 				<nav aria-label="Main navigation">
 					<ul className="flex items-center gap-12">
-						{menuItems.map(({ name, path }) => (
+						{menuItems.map(({ translationKey, path }) => (
 							<li key={path}>
 								<Link
 									to={path}
@@ -39,7 +42,7 @@ export const NavBar: FC = () => {
 										pathname === path ? "page" : undefined
 									}
 								>
-									{name}
+									{t(translationKey)}
 								</Link>
 							</li>
 						))}
@@ -50,13 +53,13 @@ export const NavBar: FC = () => {
 					<SearchInput />
 					<div className="flex items-center gap-4">
 						<button
-							aria-label="Favorites"
+							aria-label={t("favorites")}
 							className="hover:opacity-80 transition-opacity"
 						>
 							<img src="/icons/heart.svg" alt="" />
 						</button>
 						<button
-							aria-label="Shopping cart"
+							aria-label={t("shoppingCart")}
 							className="hover:opacity-80 transition-opacity"
 						>
 							<img src="/icons/cart.svg" alt="" />
