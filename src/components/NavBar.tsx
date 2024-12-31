@@ -1,42 +1,66 @@
-import SearchInput from "./SearchInput";
+import { type FC } from "react";
 import { Link, useLocation } from "react-router-dom";
+import SearchInput from "./SearchInput";
 
-const NavBar = () => {
-	const location = useLocation();
+// interface MenuItem {
+//   name: string;
+//   path: string;
+// }
 
-	const menuList = [
-		{ name: "Home", path: "/" },
-		{ name: "Contact", path: "/contact" },
-		{ name: "About", path: "/about" },
-		{ name: "Sign up", path: "/auth" },
-	];
+const menuItems = [
+	{ name: "Home", path: "/" },
+	{ name: "Contact", path: "/contact" },
+	{ name: "About", path: "/about" },
+	{ name: "Sign up", path: "/auth" },
+];
+
+export const NavBar: FC = () => {
+	const { pathname } = useLocation();
 
 	return (
 		<div className="border-b border-button">
 			<header className="container flex items-center justify-between pt-10 pb-4">
-				<h1 className="font-inter text-2xl font-bold ">Exclusive</h1>
-				<nav className="flex">
+				<Link to="/" className="font-inter text-2xl font-bold">
+					Exclusive
+				</Link>
+
+				<nav aria-label="Main navigation">
 					<ul className="flex items-center gap-12">
-						{menuList.map((item) => (
-							<Link to={`${item.path}`}>
-								<li
-									className={`menu_list_item ${
-										location.pathname === item.path
+						{menuItems.map(({ name, path }) => (
+							<li key={path}>
+								<Link
+									to={path}
+									className={`transition-all hover:text-gray-600 ${
+										pathname === path
 											? "underline font-semibold underline-offset-4"
-											: null
+											: ""
 									}`}
+									aria-current={
+										pathname === path ? "page" : undefined
+									}
 								>
-									{item.name}
-								</li>
-							</Link>
+									{name}
+								</Link>
+							</li>
 						))}
 					</ul>
 				</nav>
+
 				<div className="flex items-center gap-6">
 					<SearchInput />
 					<div className="flex items-center gap-4">
-						<img src="/icons/heart.svg" alt="heart_icon" />
-						<img src="/icons/cart.svg" alt="cart_icon" />
+						<button
+							aria-label="Favorites"
+							className="hover:opacity-80 transition-opacity"
+						>
+							<img src="/icons/heart.svg" alt="" />
+						</button>
+						<button
+							aria-label="Shopping cart"
+							className="hover:opacity-80 transition-opacity"
+						>
+							<img src="/icons/cart.svg" alt="" />
+						</button>
 					</div>
 				</div>
 			</header>
