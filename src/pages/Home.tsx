@@ -1,5 +1,5 @@
-import Header from "../components/Header";
-import SideMenuList from "../components/SideMenuList";
+import Header from "../components/custom/Header";
+import SideMenuList from "../components/custom/SideMenuList";
 
 const Home = () => {
 	return (

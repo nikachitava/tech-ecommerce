@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import { SideMenuListItemProps } from "../types/SideMenuListItemProps";
+import { SideMenuListItemProps } from "../../types/SideMenuListItemProps";
 
 const SideMenuListItem = ({
 	name,

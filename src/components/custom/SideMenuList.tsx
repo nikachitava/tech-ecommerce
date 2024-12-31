@@ -1,4 +1,4 @@
-import { sideMenuList } from "../data/SideMenuList";
+import { sideMenuList } from "../../data/SideMenuList";
 import SideMenuListItem from "./SideMenuListItem";
 
 const SideMenuList = () => {
