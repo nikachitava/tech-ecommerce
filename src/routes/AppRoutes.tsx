@@ -2,7 +2,6 @@ import { lazy, Suspense } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import ErrorPage from "../pages/ErrorPage";
 import RootLayout from "../layouts/RootLayout";
-import AuthLayout from "../layouts/AuthLayout";
 
 const Home = lazy(() => import("../pages/Home"));
 const Account = lazy(() => import("../pages/AccountPage"));
@@ -31,9 +30,7 @@ const AppRoutes = () => {
 						<Route path="/checkout" element={<Checkout />} />
 						<Route path="/wishlist" element={<WishlistPage />} />
 					</Route>
-					<Route element={<AuthLayout />}>
-						<Route path="/auth" element={<Auth />} />
-					</Route>
+					<Route path="/auth" element={<Auth />} />
 					/* Eror Page */
 					<Route>
 						<Route path="*" element={<ErrorPage />} />
