@@ -2,7 +2,7 @@ import { type FC } from "react";
 import { Link, useLocation } from "react-router-dom";
 import SearchInput from "./SearchInput";
 import { useTranslation } from "react-i18next";
-import { menuItems } from "../Data/MenuItems";
+import { menuItems } from "../data/MenuItems";
 
 export const NavBar: FC = () => {
 	const { pathname } = useLocation();
