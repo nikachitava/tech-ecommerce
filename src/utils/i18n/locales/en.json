@@ -3,5 +3,14 @@
     "menuHome": "Home",
     "contact": "Contact",
     "about": "About",
-    "auth": "Sign up"
+    "auth": "Sign up",
+    "womanFashion": "Woman's Fashion",
+    "menFashion": "Men's Fashion",
+    "electronics": "Electronics",
+    "homeNlifestyle": "Home & Lifestyle",
+    "medicine": "Medicine",
+    "sportNOutdoor": "Sports & Outdoor",
+    "babyNToys": "Baby's & Toys",
+    "groceriesNPets": "Groceries & Pets",
+    "HealthNBeauty": "Health & Beauty"
 }

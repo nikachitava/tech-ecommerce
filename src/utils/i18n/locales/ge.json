@@ -3,5 +3,14 @@
     "menuHome": "მთავარი",
     "contact": "კონტაქტი",
     "about": "ჩვენს შესახებ",
-    "auth": "ავტორიზაცია"
+    "auth": "ავტორიზაცია",
+    "womanFashion": "ქალთა მოდა",
+    "menFashion": "კაცთა მოდა",
+    "electronics": "ელექტროტექნიკა",
+    "homeNlifestyle": "სახლი & ყოველდღიური",
+    "medicine": "წამლები",
+    "sportNOutdoor": "სპორტი & ვარჯიში",
+    "babyNToys": "ბავშვები & სათამაშოები",
+    "groceriesNPets": "სურსათი & ცხოველები",
+    "HealthNBeauty": "ჯანმრთელობა & თავის მოვლა"
 }
