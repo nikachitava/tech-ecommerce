@@ -1,3 +1,5 @@
+import LanguageSwitcher from "./LanguageSwitcher";
+
 const Advertisement = () => {
 	return (
 		<div className="w-full bg-button">
@@ -12,7 +14,8 @@ const Advertisement = () => {
 					</strong>
 				</div>
 				<div>
-					<p className="text-text">ENGLISH</p>
+					{/* <p className="text-text">ENGLISH</p> */}
+					<LanguageSwitcher />
 				</div>
 			</div>
 		</div>
