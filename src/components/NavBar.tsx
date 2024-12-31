@@ -2,18 +2,11 @@ import { type FC } from "react";
 import { Link, useLocation } from "react-router-dom";
 import SearchInput from "./SearchInput";
 import { useTranslation } from "react-i18next";
-import { MenuItemsTypes } from "../types/MenuListItems";
+import { menuItems } from "../Data/MenuItems";
 
 export const NavBar: FC = () => {
 	const { pathname } = useLocation();
 	const { t } = useTranslation();
-
-	const menuItems: MenuItemsTypes[] = [
-		{ name: "Home", translationKey: "menuHome", path: "/" },
-		{ name: "Contact", translationKey: "contact", path: "/contact" },
-		{ name: "About", translationKey: "about", path: "/about" },
-		{ name: "Sign up", translationKey: "auth", path: "/auth" },
-	];
 
 	return (
 		<div className="border-b border-button">

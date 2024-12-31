@@ -1,10 +1,16 @@
-import { useTranslation } from "react-i18next";
+import SideMenuList from "../components/SideMenuList";
 
 const Home = () => {
-	const { t } = useTranslation();
-
 	return (
-		<div className="container w-full bg-red-400">{t("welcomeMessage")}</div>
+		<div className="container flex items-start justify-between gap-28 py-10">
+			<SideMenuList />
+			<img
+				src="/images/main_banner.svg"
+				alt="main_banner"
+				className="flex-1"
+				loading="lazy"
+			/>
+		</div>
 	);
 };
 
