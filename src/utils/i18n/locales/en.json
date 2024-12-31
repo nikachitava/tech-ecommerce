@@ -1,3 +1,7 @@
 {
-    "welcomeMessage": "Welcome to React and react-i18next"
+    "welcomeMessage": "Welcome",
+    "menuHome": "Home",
+    "contact": "Contact",
+    "about": "About",
+    "auth": "Sign up"
 }

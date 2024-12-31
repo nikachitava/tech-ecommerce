@@ -1,3 +1,7 @@
 {
-    "welcomeMessage": "მოგესალმებით"
+    "welcomeMessage": "მოგესალმებით",
+    "menuHome": "მთავარი",
+    "contact": "კონტაქტი",
+    "about": "ჩვენს შესახებ",
+    "auth": "ავტორიზაცია"
 }
