@@ -2,12 +2,7 @@ import { type FC } from "react";
 import { Link, useLocation } from "react-router-dom";
 import SearchInput from "./SearchInput";
 import { useTranslation } from "react-i18next";
-
-interface MenuItemsTypes {
-	name: string;
-	translationKey: string;
-	path: string;
-}
+import { MenuItemsTypes } from "../types/MenuListItems";
 
 export const NavBar: FC = () => {
 	const { pathname } = useLocation();
@@ -32,7 +27,7 @@ export const NavBar: FC = () => {
 						{menuItems.map(({ translationKey, path }) => (
 							<li key={path}>
 								<Link
-									to={path}
+									to={path || ""}
 									className={`transition-all hover:text-gray-600 ${
 										pathname === path
 											? "underline font-semibold underline-offset-4"
