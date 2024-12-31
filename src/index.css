@@ -4,3 +4,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer utilities {
+	.menu_list_item {
+		@apply font-poppins text-text2 cursor-pointer;
+	}
+}
