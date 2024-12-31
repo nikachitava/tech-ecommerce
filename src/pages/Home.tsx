@@ -1,5 +1,11 @@
+import { useTranslation } from "react-i18next";
+
 const Home = () => {
-	return <div className="container w-full bg-red-400">Home</div>;
+	const { t } = useTranslation();
+
+	return (
+		<div className="container w-full bg-red-400">{t("welcomeMessage")}</div>
+	);
 };
 
 export default Home;
