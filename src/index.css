@@ -10,3 +10,10 @@
 		@apply font-poppins text-text2 cursor-pointer;
 	}
 }
+
+@layer base {
+  :root {
+
+		--radius: 0.5rem
+	}
+}
