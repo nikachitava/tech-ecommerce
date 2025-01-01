@@ -4,8 +4,6 @@ import SearchInput from "./SearchInput";
 import { useTranslation } from "react-i18next";
 import { menuItems } from "../../data/MenuItems";
 import MobileNavBar from "./MobileNavBar";
-import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "@/state/store";
 
 export const NavBar: FC = () => {
 	const { pathname } = useLocation();
@@ -13,14 +11,9 @@ export const NavBar: FC = () => {
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
 	const toggleMenu = () => setIsMenuOpen((isMenuOpen) => !isMenuOpen);
 
-	const dispatch = useDispatch();
-	const isAuthorized = useSelector(
-		(state: RootState) => state.authorization.isAuthorized
-	);
-
-	const filteredMenuItems = menuItems.filter(
-		(item) => !(isAuthorized && item.translationKey === "auth")
-	);
+	// const filteredMenuItems = menuItems.filter(
+	// 	(item) => !(isAuthorized && item.translationKey === "auth")
+	// );
 
 	return (
 		<>
@@ -35,27 +28,25 @@ export const NavBar: FC = () => {
 						className="hidden lg:block"
 					>
 						<ul className="flex items-center gap-12">
-							{filteredMenuItems.map(
-								({ translationKey, path }) => (
-									<li key={path}>
-										<Link
-											to={path || ""}
-											className={`transition-all hover:text-gray-600 ${
-												pathname === path
-													? "underline font-semibold underline-offset-4"
-													: ""
-											}`}
-											aria-current={
-												pathname === path
-													? "page"
-													: undefined
-											}
-										>
-											{t(translationKey)}
-										</Link>
-									</li>
-								)
-							)}
+							{menuItems.map(({ translationKey, path }) => (
+								<li key={path}>
+									<Link
+										to={path || ""}
+										className={`transition-all hover:text-gray-600 ${
+											pathname === path
+												? "underline font-semibold underline-offset-4"
+												: ""
+										}`}
+										aria-current={
+											pathname === path
+												? "page"
+												: undefined
+										}
+									>
+										{t(translationKey)}
+									</Link>
+								</li>
+							))}
 						</ul>
 					</nav>
 

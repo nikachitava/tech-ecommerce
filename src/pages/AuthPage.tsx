@@ -3,8 +3,11 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { Form } from "@/components/ui/form";
 import CustomInput from "@/components/custom/CustomInput";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { useDispatch } from "react-redux";
+import { signInWithGoogle } from "@/state/auth/authSlice";
+import { AppDisPatch } from "@/state/store";
 
 const formSchema = z.object({
 	email: z.string().min(2).max(50),
@@ -26,6 +29,17 @@ const AuthPage = () => {
 
 	const { t } = useTranslation();
 
+	const navigate = useNavigate();
+	const dispatch: AppDisPatch = useDispatch();
+	const handleGoogleSignIn = async () => {
+		try {
+			await dispatch(signInWithGoogle()).unwrap();
+			navigate("/"); // Redirect to home page
+		} catch (error) {
+			console.error("Google sign-in failed", error);
+		}
+	};
+
 	return (
 		<div className="min-h-screen bg-gray-100 text-gray-900 flex justify-center">
 			<div className="max-w-screen-xl m-0 sm:m-10 bg-white shadow sm:rounded-lg flex justify-center flex-1">
@@ -44,7 +58,10 @@ const AuthPage = () => {
 						</h1>
 						<div className="w-full flex-1 mt-8">
 							<div className="flex flex-col items-center">
-								<button className="w-full max-w-xs font-bold shadow-sm rounded-lg py-3 bg-indigo-100 text-gray-800 flex items-center justify-center transition-all duration-300 ease-in-out focus:outline-none hover:shadow focus:shadow-sm focus:shadow-outline">
+								<button
+									className="w-full max-w-xs font-bold shadow-sm rounded-lg py-3 bg-indigo-100 text-gray-800 flex items-center justify-center transition-all duration-300 ease-in-out focus:outline-none hover:shadow focus:shadow-sm focus:shadow-outline"
+									onClick={handleGoogleSignIn}
+								>
 									<div className="bg-white p-2 rounded-full">
 										<svg
 											className="w-4"
