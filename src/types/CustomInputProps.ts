@@ -8,4 +8,5 @@ export interface CustomInputProps {
 	placeholder?: string;
 	type?: string;
 	onChange?: (e: any) => void;
+    styles?: string;
 }
