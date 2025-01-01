@@ -12,5 +12,10 @@
     "sportNOutdoor": "სპორტი & ვარჯიში",
     "babyNToys": "ბავშვები & სათამაშოები",
     "groceriesNPets": "სურსათი & ცხოველები",
-    "HealthNBeauty": "ჯანმრთელობა & თავის მოვლა"
+    "HealthNBeauty": "ჯანმრთელობა & თავის მოვლა",
+    "SignUp" : "რეგისტრაცია",
+    "Email" : "მეილი",
+    "SignUpEmailMessage" : "ან დარეგისტრირდი ელექტრონული ფოსტით",
+    "Password" : "პაროლი",
+    "ContinueWithGoogle" : "გააგრძელეთ გუგლით"
 }

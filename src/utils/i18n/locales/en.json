@@ -12,5 +12,10 @@
     "sportNOutdoor": "Sports & Outdoor",
     "babyNToys": "Baby's & Toys",
     "groceriesNPets": "Groceries & Pets",
-    "HealthNBeauty": "Health & Beauty"
+    "HealthNBeauty": "Health & Beauty",
+    "SignUp" : "Sign up",
+    "Email" : "Email",
+    "SignUpEmailMessage" : "Or sign up with e-mail",
+    "Password" : "Password",
+    "ContinueWithGoogle" : "Continue with Google"
 }
