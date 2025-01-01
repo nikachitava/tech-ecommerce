@@ -4,7 +4,7 @@ import Advertisement from "../components/custom/Advertisement";
 
 const RootLayout = () => {
 	return (
-		<div>
+		<div className="relative">
 			<Advertisement />
 			<NavBar />
 			<Outlet />
