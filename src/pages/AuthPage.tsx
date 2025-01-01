@@ -3,6 +3,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { Form } from "@/components/ui/form";
 import CustomInput from "@/components/custom/CustomInput";
+import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 const formSchema = z.object({
 	email: z.string().min(2).max(50),
@@ -18,25 +20,27 @@ const AuthPage = () => {
 		},
 	});
 
-	// 2. Define a submit handler.
 	function onSubmit(values: z.infer<typeof formSchema>) {
 		console.log(values);
 	}
+
+	const { t } = useTranslation();
 
 	return (
 		<div className="min-h-screen bg-gray-100 text-gray-900 flex justify-center">
 			<div className="max-w-screen-xl m-0 sm:m-10 bg-white shadow sm:rounded-lg flex justify-center flex-1">
 				<div className="lg:w-1/2 xl:w-5/12 p-6 sm:p-12">
-					<div>
-						<img
-							src="https://storage.googleapis.com/devitary-image-host.appspot.com/15846435184459982716-LogoMakr_7POjrN.png"
-							alt="Logo"
-							className="w-32 mx-auto"
-						/>
+					<div className="text-center">
+						<Link
+							to="/"
+							className="font-inter text-3xl font-bold text-secondary2"
+						>
+							Exclusive
+						</Link>
 					</div>
 					<div className="mt-12 flex flex-col items-center">
 						<h1 className="font-poppins text-2xl xl:text-3xl font-semibold text-primary1">
-							Sign up
+							{t("SignUp")}
 						</h1>
 						<div className="w-full flex-1 mt-8">
 							<div className="flex flex-col items-center">
@@ -65,14 +69,14 @@ const AuthPage = () => {
 										</svg>
 									</div>
 									<span className="ml-4">
-										Sign Up with Google
+										{t("ContinueWithGoogle")}
 									</span>
 								</button>
 							</div>
 
-							<div className="my-12 border-b text-center">
+							<div className="my-16 border-b text-center">
 								<div className="leading-none px-2 inline-block text-sm text-gray-600 tracking-wide font-medium bg-white transform translate-y-1/2">
-									Or sign up with e-mail
+									{t("SignUpEmailMessage")}
 								</div>
 							</div>
 
@@ -85,15 +89,17 @@ const AuthPage = () => {
 										<CustomInput
 											control={form.control}
 											name="email"
-											label="Email"
-											placeholder="Email"
+											label={t("Email")}
+											placeholder={t("Password")}
+											styles="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none"
 										/>
 										<CustomInput
 											control={form.control}
 											name="password"
-											label="Password"
+											label={t("Password")}
 											type="password"
-											placeholder="Password"
+											placeholder={t("Password")}
+											styles="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none"
 										/>
 										<button className="mt-5 tracking-wide font-semibold bg-indigo-500 text-gray-100 w-full py-4 rounded-lg hover:bg-indigo-700 transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none">
 											<svg
@@ -109,27 +115,11 @@ const AuthPage = () => {
 												<path d="M20 8v6M23 11h-6" />
 											</svg>
 											<span className="ml-3">
-												Sign Up
+												{t("SignUp")}
 											</span>
 										</button>
 									</form>
 								</Form>
-								<p className="mt-6 text-xs text-gray-600 text-center">
-									I agree to abide by templatana's
-									<a
-										href="#"
-										className="border-b border-gray-500 border-dotted"
-									>
-										Terms of Service
-									</a>
-									and its
-									<a
-										href="#"
-										className="border-b border-gray-500 border-dotted"
-									>
-										Privacy Policy
-									</a>
-								</p>
 							</div>
 						</div>
 					</div>
