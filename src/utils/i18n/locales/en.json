@@ -17,5 +17,13 @@
     "Email" : "Email",
     "SignUpEmailMessage" : "Or sign up with e-mail",
     "Password" : "Password",
-    "ContinueWithGoogle" : "Continue with Google"
+    "ContinueWithGoogle" : "Continue with Google",
+    "Categories" : "Categories",
+    "BrowseByCategory" : "Browse By Category",
+    "Phones" : "Phones",
+    "Computers" : "Computers",
+    "Smartwatches" : "Smartwatch",
+    "Camera" : "Camera",
+    "Headphone" : "Headphone",
+    "Gaming" : "Gaming"
 }

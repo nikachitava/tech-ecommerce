@@ -17,5 +17,13 @@
     "Email" : "მეილი",
     "SignUpEmailMessage" : "ან დარეგისტრირდი ელექტრონული ფოსტით",
     "Password" : "პაროლი",
-    "ContinueWithGoogle" : "გააგრძელეთ გუგლით"
+    "ContinueWithGoogle" : "გააგრძელეთ გუგლით",
+    "Categories" : "კატეგორიები",
+    "BrowseByCategory" : "კატეგორიების მიხედვით",
+    "Phones" : "ტელეფონი",
+    "Computers" : "კომპიუტერები",
+    "Smartwatches" : "ჭკვიანი საათები",
+    "Camera" : "კამერა",
+    "Headphone" : "ყურსასმენები",
+    "Gaming" : "გეიმინგი"
 }
