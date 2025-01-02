@@ -6,6 +6,7 @@ interface HeaderProps {
 }
 
 const Header: React.FC<HeaderProps> = ({ title, header }) => {
+	const targetDate = new Date("2025-01-03T23:59:59");
 	return (
 		<div className="space-y-5">
 			<div className="flex justify-between items-center">
@@ -15,7 +16,7 @@ const Header: React.FC<HeaderProps> = ({ title, header }) => {
 						{title}
 					</h4>
 				</div>
-				<Timer />
+				<Timer targetDate={targetDate} />
 			</div>
 			<h1 className="text-4xl font-poppins text-text2 font-semibold">
 				{header}
