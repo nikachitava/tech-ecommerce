@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
-import Header from "../components/custom/Header";
 import SideMenuList from "../components/custom/SideMenuList";
 import { RootState } from "@/state/store";
+import CategorySection from "@/sections/CategorySection";
 
 const Home = () => {
 	const isAuth = useSelector((state: RootState) => state.auth.isAuth);
@@ -24,7 +24,7 @@ const Home = () => {
 					loading="lazy"
 				/>
 			</section>
-			<Header title="Today's" />
+			<CategorySection />
 		</div>
 	);
 };
