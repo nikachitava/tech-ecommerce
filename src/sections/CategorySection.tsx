@@ -20,10 +20,10 @@ const CategorySection = () => {
 
 	return (
 		<section className="space-y-16">
-			<Header title="Today's" header="Browse By Category" />
-			<div className="flex items-center justify-between">
+			<Header title="Categories" header="Browse By Category" />
+			<div className="flex items-center justify-between gap-5">
 				{categoriesList.map(({ icon, title }) => (
-					<CategoryCard icon={icon} title={title} />
+					<CategoryCard key={icon} icon={icon} title={title} />
 				))}
 			</div>
 		</section>
