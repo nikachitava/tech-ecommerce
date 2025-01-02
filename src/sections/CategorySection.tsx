@@ -21,7 +21,8 @@ const CategorySection = () => {
 	return (
 		<section className="space-y-16">
 			<Header title="Categories" header="Browse By Category" />
-			<div className="flex items-center justify-between gap-5">
+			{/* <div className="flex flex-wrap items-center justify-between gap-5 lg:gap-10"> */}
+			<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-10">
 				{categoriesList.map(({ icon, title }) => (
 					<CategoryCard key={icon} icon={icon} title={title} />
 				))}
