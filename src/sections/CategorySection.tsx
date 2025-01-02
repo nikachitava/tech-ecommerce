@@ -23,7 +23,7 @@ const CategorySection = () => {
 
 	return (
 		<section className="space-y-16">
-			<Header title="Categories" header="Browse By Category" />
+			<Header title={t("Categories")} header={t("BrowseByCategory")} />
 			<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-10">
 				{categoriesList.map(({ icon, transLationKey }) => (
 					<CategoryCard
