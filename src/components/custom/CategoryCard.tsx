@@ -11,7 +11,7 @@ const CategoryCard: React.FC<CategoryCardProps> = ({ icon, title }) => {
 			<img
 				src={icon}
 				alt={icon}
-				className="group-hover:filter group-hover:invert group-hover:brightness-0"
+				className="filter invert-0 brightness-0 group-hover:invert group-hover:brightness-0"
 			/>
 			<h1 className="font-poppins text-text2 group-hover:text-text">
 				{title}
