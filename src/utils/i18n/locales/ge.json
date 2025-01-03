@@ -25,5 +25,10 @@
     "Smartwatches" : "ჭკვიანი საათები",
     "Camera" : "კამერა",
     "Headphone" : "ყურსასმენები",
-    "Gaming" : "გეიმინგი"
+    "Gaming" : "გეიმინგი",
+    "MyProfile" : "პროფილის მართვა",
+    "MyOrders" : "ჩემი შეკვეთები",
+    "MyCancellations" : "გაუქმებული შეკვეთები",
+    "MyReviews" : "ჩემი შეფასებები",
+    "LogOut" : "გამოსვლა"
 }

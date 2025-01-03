@@ -25,5 +25,12 @@
     "Smartwatches" : "Smartwatch",
     "Camera" : "Camera",
     "Headphone" : "Headphone",
-    "Gaming" : "Gaming"
+    "Gaming" : "Gaming",
+    "MyProfile" : "Manage My Profile",
+    "MyOrders" : "My Orders",
+    "MyCancellations" : "My MyCancellations",
+    "MyReviews" : "My Reviews",
+    "LogOut" : "Log out"
+   
+    
 }
