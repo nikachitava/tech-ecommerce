@@ -63,28 +63,31 @@ export const NavBar: FC = () => {
 					<div className="hidden lg:flex items-center gap-6">
 						<SearchInput />
 						<div className="flex items-center gap-4 relative">
-							<button className="hover:opacity-80 hover:bg-secondary2 p-2 rounded-full transition-opacity group">
+							<button className="navbar_icons_styles group">
 								<img
 									src="/icons/heart.svg"
-									alt=""
+									alt="heart_icon"
 									className="filter invert-0 brightness-0 group-hover:invert group-hover:brightness-0"
 								/>
 							</button>
-							<button className="hover:opacity-80 hover:bg-secondary2 p-2 rounded-full transition-opacity group">
+							<button className="relative navbar_icons_styles group">
 								<img
 									src="/icons/cart.svg"
-									alt=""
+									alt="cart_icon"
 									className="filter invert-0 brightness-0 group-hover:invert group-hover:brightness-0"
 								/>
+								<div className="font-poppins text-sm absolute top-0 right-0 text-text bg-secondary2 size-5 p-3 flex items-center justify-center rounded-full">
+									2
+								</div>
 							</button>
 							{!isAuth && (
 								<button
 									onClick={toggleProfileMenu}
-									className="hover:opacity-80 hover:bg-secondary2 p-2 rounded-full transition-opacity group"
+									className="navbar_icons_styles group"
 								>
 									<img
 										src="/icons/profile_icon.svg"
-										alt=""
+										alt="profile_icon"
 										className="filter invert-0 brightness-0 group-hover:invert group-hover:brightness-0"
 									/>
 								</button>
