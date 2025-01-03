@@ -13,6 +13,12 @@ export default {
 					xl: "5rem",
 				},
 			},
+			backdropBlur: {
+				150: "15px", // Custom value for 150% blur
+			},
+			backgroundOpacity: {
+				4: "0.04", // Adds 4% opacity for backgrounds
+			},
 			colors: {
 				primary: "#FFFFFF",
 				primary1: "#363738",
