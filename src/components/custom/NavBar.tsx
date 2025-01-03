@@ -4,12 +4,22 @@ import SearchInput from "./SearchInput";
 import { useTranslation } from "react-i18next";
 import { menuItems } from "../../data/MenuItems";
 import MobileNavBar from "./MobileNavBar";
+import { useSelector } from "react-redux";
+import { RootState } from "@/state/store";
+import ProfileMenu from "./ProfileMenu";
 
 export const NavBar: FC = () => {
+	const [isMenuOpen, setIsMenuOpen] = useState(false);
+	const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
+
 	const { pathname } = useLocation();
 	const { t } = useTranslation();
-	const [isMenuOpen, setIsMenuOpen] = useState(false);
+
 	const toggleMenu = () => setIsMenuOpen((isMenuOpen) => !isMenuOpen);
+	const toggleProfileMenu = () =>
+		setIsProfileMenuOpen((isProfileMenuOpen) => !isProfileMenuOpen);
+
+	const isAuth = useSelector((state: RootState) => state.auth.isAuth);
 
 	// const filteredMenuItems = menuItems.filter(
 	// 	(item) => !(isAuthorized && item.translationKey === "auth")
@@ -52,19 +62,34 @@ export const NavBar: FC = () => {
 
 					<div className="hidden lg:flex items-center gap-6">
 						<SearchInput />
-						<div className="flex items-center gap-4">
-							<button
-								aria-label={t("favorites")}
-								className="hover:opacity-80 transition-opacity"
-							>
-								<img src="/icons/heart.svg" alt="" />
+						<div className="flex items-center gap-4 relative">
+							<button className="hover:opacity-80 hover:bg-secondary2 p-2 rounded-full transition-opacity group">
+								<img
+									src="/icons/heart.svg"
+									alt=""
+									className="filter invert-0 brightness-0 group-hover:invert group-hover:brightness-0"
+								/>
 							</button>
-							<button
-								aria-label={t("shoppingCart")}
-								className="hover:opacity-80 transition-opacity"
-							>
-								<img src="/icons/cart.svg" alt="" />
+							<button className="hover:opacity-80 hover:bg-secondary2 p-2 rounded-full transition-opacity group">
+								<img
+									src="/icons/cart.svg"
+									alt=""
+									className="filter invert-0 brightness-0 group-hover:invert group-hover:brightness-0"
+								/>
 							</button>
+							{!isAuth && (
+								<button
+									onClick={toggleProfileMenu}
+									className="hover:opacity-80 hover:bg-secondary2 p-2 rounded-full transition-opacity group"
+								>
+									<img
+										src="/icons/profile_icon.svg"
+										alt=""
+										className="filter invert-0 brightness-0 group-hover:invert group-hover:brightness-0"
+									/>
+								</button>
+							)}
+							{isProfileMenuOpen && <ProfileMenu />}
 						</div>
 					</div>
 
