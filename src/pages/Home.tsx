@@ -2,6 +2,7 @@ import { useSelector } from "react-redux";
 import SideMenuList from "../components/custom/SideMenuList";
 import { RootState } from "@/state/store";
 import CategorySection from "@/sections/CategorySection";
+import DiscountsSection from "@/sections/DiscountsSection";
 
 const Home = () => {
 	const isAuth = useSelector((state: RootState) => state.auth.isAuth);
@@ -25,6 +26,7 @@ const Home = () => {
 				/>
 			</main>
 			<div className="space-y-[140px]">
+				<DiscountsSection />
 				<CategorySection />
 			</div>
 		</div>
