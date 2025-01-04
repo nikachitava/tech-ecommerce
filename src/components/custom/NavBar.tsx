@@ -21,9 +21,9 @@ export const NavBar: FC = () => {
 
 	const isAuth = useSelector((state: RootState) => state.auth.isAuth);
 
-	// const filteredMenuItems = menuItems.filter(
-	// 	(item) => !(isAuthorized && item.translationKey === "auth")
-	// );
+	const filteredMenuItems = menuItems.filter(
+		(item) => !(isAuth && item.translationKey === "auth")
+	);
 
 	return (
 		<>
@@ -38,25 +38,27 @@ export const NavBar: FC = () => {
 						className="hidden lg:block"
 					>
 						<ul className="flex items-center gap-12">
-							{menuItems.map(({ translationKey, path }) => (
-								<li key={path}>
-									<Link
-										to={path || ""}
-										className={`transition-all hover:text-gray-600 ${
-											pathname === path
-												? "underline font-semibold underline-offset-4"
-												: ""
-										}`}
-										aria-current={
-											pathname === path
-												? "page"
-												: undefined
-										}
-									>
-										{t(translationKey)}
-									</Link>
-								</li>
-							))}
+							{filteredMenuItems.map(
+								({ translationKey, path }) => (
+									<li key={path}>
+										<Link
+											to={path || ""}
+											className={`transition-all hover:text-gray-600 ${
+												pathname === path
+													? "underline font-semibold underline-offset-4"
+													: ""
+											}`}
+											aria-current={
+												pathname === path
+													? "page"
+													: undefined
+											}
+										>
+											{t(translationKey)}
+										</Link>
+									</li>
+								)
+							)}
 						</ul>
 					</nav>
 
