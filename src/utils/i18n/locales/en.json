@@ -30,7 +30,9 @@
     "MyOrders" : "My Orders",
     "MyCancellations" : "My MyCancellations",
     "MyReviews" : "My Reviews",
-    "LogOut" : "Log out"
+    "LogOut" : "Log out",
+    "FlashDiscount" : "Flash Discount",
+    "Todays" : "Today's"
    
     
 }
