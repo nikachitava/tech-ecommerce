@@ -1,4 +1,5 @@
 import Header from "@/components/custom/Header";
+import ExploreProductsContainer from "@/containers/ExploreProductsContainer";
 import { useTranslation } from "react-i18next";
 
 const ExploreProductsSection = () => {
@@ -11,6 +12,7 @@ const ExploreProductsSection = () => {
 				header={t("ExploreOurProducts")}
 				hasTimer={false}
 			/>
+			<ExploreProductsContainer />
 		</section>
 	);
 };
