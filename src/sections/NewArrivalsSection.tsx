@@ -1,11 +1,14 @@
 import Header from "@/components/custom/Header";
 import NewArrivalsCard from "@/components/custom/NewArrivalsCard";
 import { arrivalsLists } from "@/data/ArrivalList";
+import { useTranslation } from "react-i18next";
 
 const NewArrivalsSection = () => {
+	const { t } = useTranslation();
+
 	return (
 		<section className="space-y-16">
-			<Header header="Featured" title="New Arrival" />
+			<Header header={t("NewArrival")} title={t("Featured")} />
 
 			<div className="flex flex-col lg:grid lg:grid-cols-4 gap-6 w-full max-w-7xl">
 				<div className="col-span-2 row-span-3">
