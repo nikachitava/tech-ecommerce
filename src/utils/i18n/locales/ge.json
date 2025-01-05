@@ -32,5 +32,7 @@
     "MyReviews" : "ჩემი შეფასებები",
     "LogOut" : "გამოსვლა",
     "FlashDiscount" : "ფასდაკლებები",
-    "Todays" : "დღევანდელი"
+    "Todays" : "დღევანდელი",
+    "BestSellingProduct": "ყველაზე გაყიდვადი",
+    "ThisMonth": "ამ თვის"
 }

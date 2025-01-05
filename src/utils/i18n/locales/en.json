@@ -32,7 +32,9 @@
     "MyReviews" : "My Reviews",
     "LogOut" : "Log out",
     "FlashDiscount" : "Flash Discount",
-    "Todays" : "Today's"
+    "Todays" : "Today's",
+    "BestSellingProduct": "Best Selling Product",
+    "ThisMonth": "This Month"
    
     
 }
