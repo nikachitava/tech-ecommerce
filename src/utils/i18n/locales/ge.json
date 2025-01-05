@@ -38,5 +38,15 @@
     "OurProducts": "ჩვენი პროდუქტები",
     "ExploreOurProducts": "აღმოაჩინეთ ახალი პროდუქტები",
     "NewArrival": "ახალი პროდუქტები",
-    "Featured": "შემოთავაზებები"
+    "Featured": "შემოთავაზებები",
+    "FreeDelivery" : "უფასო მიტანა $140-ზე მეტ შენაძენზე",
+    "FreeDeliveryText" : "უფასო და სწრაფი მიტანა",
+
+    "CustomerService" : "24/7 მომსახურების სერვისი",
+    "CustomerServiceText" : "მეგობრული მომსახურების სერვისი",
+
+    "MoneyBackGuarantee" : "თანხის დაბრუნების გარანტია",
+    "MoneyBackGuaranteeText" : "თანხის დაბრუნება 30 დღეში"
+
+    
 }

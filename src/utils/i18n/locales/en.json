@@ -38,7 +38,16 @@
     "OurProducts": "Our Products",
     "ExploreOurProducts": "Explore Our Products",
     "NewArrival": "New Arrival",
-    "Featured": "Featured"
+    "Featured": "Featured",
+    "FreeDelivery" : "free and fast delivery",
+    "FreeDeliveryText" : "Free delivery for all orders over $140",
+
+    "CustomerService" : "24/7 CUSTOMER SERVICE",
+    "CustomerServiceText" : "Friendly 24/7 customer support",
+
+    "MoneyBackGuarantee" : "MONEY BACK GUARANTEE",
+    "MoneyBackGuaranteeText" : "We return money within 30 days"
+    
    
     
 }
