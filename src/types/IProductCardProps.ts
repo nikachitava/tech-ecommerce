@@ -4,4 +4,5 @@ export interface IProductCardProps {
 	title: string;
 	price: number;
 	thumbnail: string;
+    isDiscount: boolean;
 }

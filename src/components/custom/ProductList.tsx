@@ -19,6 +19,7 @@ const ProductList: React.FC<IProductListProps> = ({ products, isLoading }) => {
 						price={product.price}
 						thumbnail={product.thumbnail}
 						title={product.title}
+						isDiscount
 					/>
 				))}
 		</div>
