@@ -1,9 +1,11 @@
 import Header from "@/components/custom/Header";
+import BestSellingProductsContainer from "@/containers/BestSellingProductsContainer";
 
 const BestSellingProductsSection = () => {
 	return (
-		<section>
-			<Header header="This Month" title="Best Selling Product" />
+		<section className="space-y-16">
+			<Header header="Best Selling Product" title="This Month" />
+			<BestSellingProductsContainer />
 		</section>
 	);
 };
