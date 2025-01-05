@@ -9,7 +9,7 @@ const ProductCard: React.FC<IProductCardProps> = ({
 	thumbnail,
 }) => {
 	return (
-		<div className="min-w-[270px] shadow-lg cursor-pointer rounded">
+		<div className="min-w-[270px] shadow-lg cursor-pointer rounded group">
 			<div className="relative h-[250px] z-20 flex justify-between bg-secondary px-3 py-9">
 				<div>
 					<span className="font-poppins z-10 font-medium text-sm bg-secondary2 py-1 px-3 text-text rounded">
@@ -24,6 +24,11 @@ const ProductCard: React.FC<IProductCardProps> = ({
 				<div>
 					<img src={heart} alt="ss" />
 					<img src={eye} alt="ss" />
+				</div>
+				<div className="absolute bg-black bottom-0 left-0 w-full translate-y-full group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-700">
+					<p className="font-poppins font-medium text-text text-center py-1">
+						ADD CART
+					</p>
 				</div>
 			</div>
 			<div className="pt-4 space-y-2">
