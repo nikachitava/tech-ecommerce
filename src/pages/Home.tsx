@@ -3,12 +3,14 @@ import SideMenuList from "../components/custom/SideMenuList";
 import { RootState } from "@/state/store";
 import CategorySection from "@/sections/CategorySection";
 import DiscountsSection from "@/sections/DiscountsSection";
+import BestSellingProductsSection from "@/sections/BestSellingProductsSection";
 
 const Home = () => {
 	const isAuth = useSelector((state: RootState) => state.auth.isAuth);
 	const currentUser = useSelector(
 		(state: RootState) => state.auth.currentUser
 	);
+
 	return (
 		<div className="container">
 			{isAuth && (
@@ -25,9 +27,10 @@ const Home = () => {
 					loading="lazy"
 				/>
 			</main>
-			<div className="space-y-[140px]">
+			<div className="space-y-[140px] my-[140px]">
 				<DiscountsSection />
 				<CategorySection />
+				<BestSellingProductsSection />
 			</div>
 		</div>
 	);
