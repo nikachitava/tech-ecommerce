@@ -4,6 +4,7 @@ import { RootState } from "@/state/store";
 import CategorySection from "@/sections/CategorySection";
 import DiscountsSection from "@/sections/DiscountsSection";
 import BestSellingProductsSection from "@/sections/BestSellingProductsSection";
+import ExploreProductsSection from "@/sections/ExploreProductsSection";
 
 const Home = () => {
 	const isAuth = useSelector((state: RootState) => state.auth.isAuth);
@@ -31,6 +32,7 @@ const Home = () => {
 				<DiscountsSection />
 				<CategorySection />
 				<BestSellingProductsSection />
+				<ExploreProductsSection />
 			</div>
 		</div>
 	);
