@@ -13,7 +13,7 @@ const BestSellingProductsList: React.FC<IProductListProps> = ({
 }) => {
 	if (isLoading) return <div>....Loading</div>;
 	return (
-		<div className="flex items-center gap-10 overflow-auto no-scrollbar cursor-grab">
+		<div className="flex items-center justify-between gap-10 overflow-auto no-scrollbar cursor-grab">
 			{products.length &&
 				products.map((product) => (
 					<ProductCard
