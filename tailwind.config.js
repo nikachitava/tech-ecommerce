@@ -48,4 +48,5 @@ export default {
 		},
 	},
 	plugins: [require("tailwindcss-animate")],
+	safelist: ["no-scrollbar"],
 };
