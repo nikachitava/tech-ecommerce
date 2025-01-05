@@ -15,7 +15,7 @@ const ProductCard: React.FC<IProductCardProps> = ({
 
 	return (
 		<div className="min-w-[270px] shadow-lg cursor-pointer rounded group">
-			<div className="relative h-[250px]  bg-secondary p-3">
+			<div className="relative h-[250px] flex  bg-secondary p-3">
 				{isDiscount && (
 					<div className="absolute">
 						<span className="font-poppins z-10 font-medium text-sm bg-secondary2 py-1 px-3 text-text rounded">
