@@ -35,8 +35,8 @@ const Home = () => {
 				<CategorySection />
 				<BestSellingProductsSection />
 				<ExploreProductsSection />
-				<ServiceSection />
 				<NewArrivalsSection />
+				<ServiceSection />
 			</div>
 		</div>
 	);
