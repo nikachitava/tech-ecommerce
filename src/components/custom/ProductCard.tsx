@@ -14,7 +14,7 @@ const ProductCard: React.FC<IProductCardProps> = ({
 	const roundedFloatPrice = parseFloat(roundedPrice);
 
 	return (
-		<div className="min-w-[270px] shadow-lg cursor-pointer rounded group">
+		<div className="group min-w-[270px] shadow-lg cursor-pointer rounded group">
 			<div className="relative h-[250px] flex  bg-secondary p-3">
 				{isDiscount && (
 					<div className="absolute">
@@ -27,6 +27,11 @@ const ProductCard: React.FC<IProductCardProps> = ({
 				<div className="absolute right-[12px] top-0">
 					<img src={heart} alt="ss" />
 					<img src={eye} alt="ss" />
+				</div>
+				<div className="absolute bg-black bottom-0 left-0 w-full translate-y-full group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-1000">
+					<p className="font-poppins font-medium text-text text-center py-1">
+						ADD CART
+					</p>
 				</div>
 			</div>
 			<div className="pt-4 space-y-2">
