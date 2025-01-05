@@ -6,6 +6,7 @@ import DiscountsSection from "@/sections/DiscountsSection";
 import BestSellingProductsSection from "@/sections/BestSellingProductsSection";
 import ExploreProductsSection from "@/sections/ExploreProductsSection";
 import ServiceSection from "@/sections/ServiceSection";
+import NewArrivalsSection from "@/sections/NewArrivalsSection";
 
 const Home = () => {
 	const isAuth = useSelector((state: RootState) => state.auth.isAuth);
@@ -35,6 +36,7 @@ const Home = () => {
 				<BestSellingProductsSection />
 				<ExploreProductsSection />
 				<ServiceSection />
+				<NewArrivalsSection />
 			</div>
 		</div>
 	);
