@@ -1,12 +1,12 @@
 import { useSelector } from "react-redux";
 import SideMenuList from "../components/custom/SideMenuList";
 import { RootState } from "@/state/store";
-import CategorySection from "@/sections/CategorySection";
-import DiscountsSection from "@/sections/DiscountsSection";
-import BestSellingProductsSection from "@/sections/BestSellingProductsSection";
-import ExploreProductsSection from "@/sections/ExploreProductsSection";
-import ServiceSection from "@/sections/ServiceSection";
-import NewArrivalsSection from "@/sections/NewArrivalsSection";
+import CategorySection from "@/sections/homepage/CategorySection";
+import DiscountsSection from "@/sections/homepage/DiscountsSection";
+import BestSellingProductsSection from "@/sections/homepage/BestSellingProductsSection";
+import ExploreProductsSection from "@/sections/homepage/ExploreProductsSection";
+import ServiceSection from "@/sections/homepage/ServiceSection";
+import NewArrivalsSection from "@/sections/homepage/NewArrivalsSection";
 
 const Home = () => {
 	const isAuth = useSelector((state: RootState) => state.auth.isAuth);
