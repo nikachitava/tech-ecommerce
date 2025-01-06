@@ -5,15 +5,18 @@ import BestSellingProductsSection from "@/sections/homepage/BestSellingProductsS
 import ExploreProductsSection from "@/sections/homepage/ExploreProductsSection";
 import ServiceSection from "@/sections/homepage/ServiceSection";
 import NewArrivalsSection from "@/sections/homepage/NewArrivalsSection";
+import { useAuth } from "@/states/authStore";
 
 const Home = () => {
+	const { isAuth } = useAuth((state) => state);
+
 	return (
 		<div className="container">
-			{/* {isAuth && (
+			{isAuth && (
 				<h1 className="font-bold text-3xl font-roboto py-10">
-					Hello, {currentUser?.displayName}
+					Hello, Nika
 				</h1>
-			)} */}
+			)}
 			<main className="flex flex-col 2xl:flex-row items-start justify-between gap-10 2xl:gap-28 py-10">
 				<SideMenuList />
 				<img
