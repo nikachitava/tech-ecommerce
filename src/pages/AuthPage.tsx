@@ -8,22 +8,18 @@ import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 import { signInWithGoogle } from "@/state/auth/authSlice";
 import { AppDisPatch } from "@/state/store";
-
-const formSchema = z.object({
-	email: z.string().min(2).max(50),
-	password: z.string().min(2).max(50),
-});
+import { authSchema } from "@/schemas/authSchema";
 
 const AuthPage = () => {
-	const form = useForm<z.infer<typeof formSchema>>({
-		resolver: zodResolver(formSchema),
+	const form = useForm<z.infer<typeof authSchema>>({
+		resolver: zodResolver(authSchema),
 		defaultValues: {
 			email: "",
 			password: "",
 		},
 	});
 
-	function onSubmit(values: z.infer<typeof formSchema>) {
+	function onSubmit(values: z.infer<typeof authSchema>) {
 		console.log(values);
 	}
 

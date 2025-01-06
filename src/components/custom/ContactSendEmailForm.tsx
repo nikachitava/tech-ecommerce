@@ -6,22 +6,13 @@ import CustomInput from "./CustomInput";
 import { useTranslation } from "react-i18next";
 import CustomTextarea from "./CustomTextArea";
 import { Button } from "../ui/button";
-
-const formSchema = z.object({
-	name: z.string().min(2).max(50),
-	email: z
-		.string()
-		.min(1, { message: "This field has to be filled." })
-		.email("This is not a valid email."),
-	phone: z.string().min(2).max(50),
-	message: z.string().min(2).max(500),
-});
+import { sendMailSchema } from "@/schemas/sendMailSchema";
 
 const ContactSendEmailForm = () => {
 	const { t } = useTranslation();
 
-	const form = useForm<z.infer<typeof formSchema>>({
-		resolver: zodResolver(formSchema),
+	const form = useForm<z.infer<typeof sendMailSchema>>({
+		resolver: zodResolver(sendMailSchema),
 		defaultValues: {
 			name: "",
 			email: "",
@@ -30,7 +21,7 @@ const ContactSendEmailForm = () => {
 		},
 	});
 
-	const onSubmit = (values: z.infer<typeof formSchema>) => {
+	const onSubmit = (values: z.infer<typeof sendMailSchema>) => {
 		console.log(values);
 	};
 	return (
