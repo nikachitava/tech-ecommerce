@@ -6,6 +6,7 @@ import { menuItems } from "../../data/MenuItems";
 import MobileNavBar from "./MobileNavBar";
 import ProfileMenu from "./ProfileMenu";
 import { useAuth } from "@/states/authStore";
+import { useWishList } from "@/states/wishListStore";
 
 export const NavBar: FC = () => {
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -19,6 +20,8 @@ export const NavBar: FC = () => {
 	const toggleMenu = () => setIsMenuOpen((isMenuOpen) => !isMenuOpen);
 	const toggleProfileMenu = () =>
 		setIsProfileMenuOpen((isProfileMenuOpen) => !isProfileMenuOpen);
+
+	const { wishCount } = useWishList((state) => state);
 
 	return (
 		<>
@@ -58,22 +61,27 @@ export const NavBar: FC = () => {
 					<div className="hidden lg:flex items-center gap-6">
 						<SearchInput />
 						<div className="flex items-center gap-4 relative">
-							<button className="navbar_icons_styles group">
+							<button className="relative navbar_icons_styles">
 								<img
 									src="/icons/heart.svg"
 									alt="heart_icon"
-									className="filter invert-0 brightness-0 group-hover:invert group-hover:brightness-0"
+									className="filter invert-0 brightness-0 "
 								/>
+								{wishCount > 0 && (
+									<p className="font-poppins text-xs absolute top-0 right-0 text-text bg-secondary2 size-5 p-2 font-medium flex items-center justify-center rounded-full">
+										{wishCount}
+									</p>
+								)}
 							</button>
-							<button className="relative navbar_icons_styles group">
+							<button className="relative navbar_icons_styles">
 								<img
 									src="/icons/cart.svg"
 									alt="cart_icon"
-									className="filter invert-0 brightness-0 group-hover:invert group-hover:brightness-0"
+									className="filter invert-0 brightness-0 "
 								/>
-								<div className="font-poppins text-sm absolute top-0 right-0 text-text bg-secondary2 size-5 p-3 flex items-center justify-center rounded-full">
+								<p className="font-poppins text-xs absolute top-0 right-0 text-text bg-secondary2 size-5 p-2 font-medium flex items-center justify-center rounded-full">
 									2
-								</div>
+								</p>
 							</button>
 							{isAuth && (
 								<button
