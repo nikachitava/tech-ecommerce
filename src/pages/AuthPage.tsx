@@ -6,6 +6,8 @@ import CustomInput from "@/components/custom/CustomInput";
 import { Link, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { authSchema } from "@/schemas/authSchema";
+import { useAuth } from "@/states/authStore";
+import { useEffect } from "react";
 
 const AuthPage = () => {
 	const form = useForm<z.infer<typeof authSchema>>({
@@ -22,15 +24,20 @@ const AuthPage = () => {
 
 	const { t } = useTranslation();
 
+	const { loginWithGoogle, isAuth } = useAuth((state) => state);
 	const navigate = useNavigate();
+
 	const handleGoogleSignIn = async () => {
 		try {
-			// await dispatch(signInWithGoogle()).unwrap();
-			navigate("/"); // Redirect to home page
+			loginWithGoogle();
 		} catch (error) {
 			console.error("Google sign-in failed", error);
 		}
 	};
+
+	useEffect(() => {
+		if (isAuth) navigate("/");
+	}, [isAuth]);
 
 	return (
 		<div className="min-h-screen bg-gray-100 text-gray-900 flex justify-center">
