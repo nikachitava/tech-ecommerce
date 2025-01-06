@@ -10,7 +10,7 @@
 		@apply font-poppins text-text2 cursor-pointer;
 	}
 	.navbar_icons_styles {
-		@apply hover:opacity-80 hover:bg-secondary2 p-2 rounded-full transition-opacity;
+		@apply hover:opacity-80  p-2 rounded-full transition-opacity;
 	}
 }
 
