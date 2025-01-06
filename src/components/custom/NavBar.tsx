@@ -4,8 +4,6 @@ import SearchInput from "./SearchInput";
 import { useTranslation } from "react-i18next";
 import { menuItems } from "../../data/MenuItems";
 import MobileNavBar from "./MobileNavBar";
-import { useSelector } from "react-redux";
-import { RootState } from "@/state/store";
 import ProfileMenu from "./ProfileMenu";
 
 export const NavBar: FC = () => {
@@ -18,12 +16,6 @@ export const NavBar: FC = () => {
 	const toggleMenu = () => setIsMenuOpen((isMenuOpen) => !isMenuOpen);
 	const toggleProfileMenu = () =>
 		setIsProfileMenuOpen((isProfileMenuOpen) => !isProfileMenuOpen);
-
-	const isAuth = useSelector((state: RootState) => state.auth.isAuth);
-
-	const filteredMenuItems = menuItems.filter(
-		(item) => !(isAuth && item.translationKey === "auth")
-	);
 
 	return (
 		<>
@@ -38,27 +30,25 @@ export const NavBar: FC = () => {
 						className="hidden lg:block"
 					>
 						<ul className="flex items-center gap-12">
-							{filteredMenuItems.map(
-								({ translationKey, path }) => (
-									<li key={path}>
-										<Link
-											to={path || ""}
-											className={`transition-all hover:text-gray-600 ${
-												pathname === path
-													? "underline font-semibold underline-offset-4"
-													: ""
-											}`}
-											aria-current={
-												pathname === path
-													? "page"
-													: undefined
-											}
-										>
-											{t(translationKey)}
-										</Link>
-									</li>
-								)
-							)}
+							{menuItems.map(({ translationKey, path }) => (
+								<li key={path}>
+									<Link
+										to={path || ""}
+										className={`transition-all hover:text-gray-600 ${
+											pathname === path
+												? "underline font-semibold underline-offset-4"
+												: ""
+										}`}
+										aria-current={
+											pathname === path
+												? "page"
+												: undefined
+										}
+									>
+										{t(translationKey)}
+									</Link>
+								</li>
+							))}
 						</ul>
 					</nav>
 
@@ -82,18 +72,16 @@ export const NavBar: FC = () => {
 									2
 								</div>
 							</button>
-							{!isAuth && (
-								<button
-									onClick={toggleProfileMenu}
-									className="navbar_icons_styles group"
-								>
-									<img
-										src="/icons/profile_icon.svg"
-										alt="profile_icon"
-										className="filter invert-0 brightness-0 group-hover:invert group-hover:brightness-0"
-									/>
-								</button>
-							)}
+							<button
+								onClick={toggleProfileMenu}
+								className="navbar_icons_styles group"
+							>
+								<img
+									src="/icons/profile_icon.svg"
+									alt="profile_icon"
+									className="filter invert-0 brightness-0 group-hover:invert group-hover:brightness-0"
+								/>
+							</button>
 							{isProfileMenuOpen && <ProfileMenu />}
 						</div>
 					</div>

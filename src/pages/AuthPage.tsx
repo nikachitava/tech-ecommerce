@@ -5,9 +5,6 @@ import { Form } from "@/components/ui/form";
 import CustomInput from "@/components/custom/CustomInput";
 import { Link, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { useDispatch } from "react-redux";
-import { signInWithGoogle } from "@/state/auth/authSlice";
-import { AppDisPatch } from "@/state/store";
 import { authSchema } from "@/schemas/authSchema";
 
 const AuthPage = () => {
@@ -26,10 +23,9 @@ const AuthPage = () => {
 	const { t } = useTranslation();
 
 	const navigate = useNavigate();
-	const dispatch: AppDisPatch = useDispatch();
 	const handleGoogleSignIn = async () => {
 		try {
-			await dispatch(signInWithGoogle()).unwrap();
+			// await dispatch(signInWithGoogle()).unwrap();
 			navigate("/"); // Redirect to home page
 		} catch (error) {
 			console.error("Google sign-in failed", error);
