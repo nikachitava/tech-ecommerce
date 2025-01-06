@@ -61,18 +61,20 @@ export const NavBar: FC = () => {
 					<div className="hidden lg:flex items-center gap-6">
 						<SearchInput />
 						<div className="flex items-center gap-4 relative">
-							<button className="relative navbar_icons_styles">
-								<img
-									src="/icons/heart.svg"
-									alt="heart_icon"
-									className="filter invert-0 brightness-0 "
-								/>
-								{wishCount > 0 && (
-									<p className="font-poppins text-xs absolute top-0 right-0 text-text bg-secondary2 size-5 p-2 font-medium flex items-center justify-center rounded-full">
-										{wishCount}
-									</p>
-								)}
-							</button>
+							<Link to={"/wishlist"}>
+								<button className="relative navbar_icons_styles">
+									<img
+										src="/icons/heart.svg"
+										alt="heart_icon"
+										className="filter invert-0 brightness-0 "
+									/>
+									{wishCount > 0 && (
+										<p className="font-poppins text-xs absolute top-0 right-0 text-text bg-secondary2 size-5 p-2 font-medium flex items-center justify-center rounded-full">
+											{wishCount}
+										</p>
+									)}
+								</button>
+							</Link>
 							<button className="relative navbar_icons_styles">
 								<img
 									src="/icons/cart.svg"
