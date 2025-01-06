@@ -5,10 +5,13 @@ import { useTranslation } from "react-i18next";
 import { menuItems } from "../../data/MenuItems";
 import MobileNavBar from "./MobileNavBar";
 import ProfileMenu from "./ProfileMenu";
+import { useAuth } from "@/states/authStore";
 
 export const NavBar: FC = () => {
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
 	const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
+
+	const { isAuth } = useAuth((state) => state);
 
 	const { pathname } = useLocation();
 	const { t } = useTranslation();
@@ -72,16 +75,18 @@ export const NavBar: FC = () => {
 									2
 								</div>
 							</button>
-							<button
-								onClick={toggleProfileMenu}
-								className="navbar_icons_styles group"
-							>
-								<img
-									src="/icons/profile_icon.svg"
-									alt="profile_icon"
-									className="filter invert-0 brightness-0 group-hover:invert group-hover:brightness-0"
-								/>
-							</button>
+							{isAuth && (
+								<button
+									onClick={toggleProfileMenu}
+									className="navbar_icons_styles group"
+								>
+									<img
+										src="/icons/profile_icon.svg"
+										alt="profile_icon"
+										className="filter invert-0 brightness-0 group-hover:invert group-hover:brightness-0"
+									/>
+								</button>
+							)}
 							{isProfileMenuOpen && <ProfileMenu />}
 						</div>
 					</div>
