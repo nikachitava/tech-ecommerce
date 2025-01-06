@@ -10,6 +10,8 @@ import { useAuth } from "@/states/authStore";
 import { useEffect } from "react";
 
 const AuthPage = () => {
+	const { loginWithGoogle, isAuth } = useAuth((state) => state);
+
 	const form = useForm<z.infer<typeof authSchema>>({
 		resolver: zodResolver(authSchema),
 		defaultValues: {
@@ -24,7 +26,6 @@ const AuthPage = () => {
 
 	const { t } = useTranslation();
 
-	const { loginWithGoogle, isAuth } = useAuth((state) => state);
 	const navigate = useNavigate();
 
 	const handleGoogleSignIn = async () => {
