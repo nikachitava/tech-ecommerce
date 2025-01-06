@@ -2,6 +2,7 @@ import { lazy, Suspense } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import ErrorPage from "../pages/ErrorPage";
 import RootLayout from "../layouts/RootLayout";
+import Loader from "@/components/custom/Loader";
 
 const Home = lazy(() => import("../pages/Home"));
 const Account = lazy(() => import("../pages/AccountPage"));
@@ -16,7 +17,7 @@ const WishlistPage = lazy(() => import("../pages/Wishlist"));
 const AppRoutes = () => {
 	return (
 		<Router>
-			<Suspense fallback={<div>....Loading</div>}>
+			<Suspense fallback={<Loader />}>
 				<Routes>
 					/* Public Routes */
 					<Route element={<RootLayout />}>

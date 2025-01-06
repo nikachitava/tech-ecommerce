@@ -1,5 +1,6 @@
 import { Product } from "@/types/ProductType";
 import ProductCard from "./ProductCard";
+import Loader from "./Loader";
 
 interface IProductListProps {
 	products: Product[];
@@ -10,7 +11,7 @@ const ExploreProductsList: React.FC<IProductListProps> = ({
 	products,
 	isLoading,
 }) => {
-	if (isLoading) return <div>.....Loading</div>;
+	if (isLoading) return <Loader />;
 	return (
 		<div className="flex flex-col items-center justify-between gap-10 md:flex-row md:flex-wrap">
 			{products.length &&
