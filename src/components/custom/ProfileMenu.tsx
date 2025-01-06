@@ -2,18 +2,19 @@ import profileIcon from "/icons/profile_icon.svg";
 import logOutIcon from "/icons/log_out.svg";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
+import { useAuth } from "@/states/authStore";
 
 const ProfileMenu = () => {
-	// const menuList = [
-	// 	{
-	// 		icon: profileIcon,
-	// 		titleTranslationKey: "MyProfile",
-	// 		path: "/account",
-	// 	},
-	// 	{ icon: logOutIcon, titleTranslationKey: "LogOut" },
-	// ];
-
 	const { t } = useTranslation();
+	const { logout } = useAuth((state) => state);
+
+	const handleLogOut = async () => {
+		try {
+			logout();
+		} catch (error) {
+			console.error("Google sign-in failed", error);
+		}
+	};
 
 	return (
 		<ul className="absolute top-[130%] right-0 bg-[#0000005A] bg-opacity-4 backdrop-blur-[15px] p-4 rounded-sm space-y-8 shadow-md">
@@ -28,8 +29,10 @@ const ProfileMenu = () => {
 				</Link>
 			</li>
 			<li className="w-[250px]">
-				{/* Assuming you'll add an onClick handler for logout */}
-				<button className="flex items-center gap-4 w-full">
+				<button
+					className="flex items-center gap-4 w-full"
+					onClick={handleLogOut}
+				>
 					<img
 						src={logOutIcon}
 						alt={logOutIcon}

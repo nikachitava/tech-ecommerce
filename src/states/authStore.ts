@@ -1,4 +1,4 @@
-import { doSignInWithGoogle } from '@/firebase/auth';
+import { doSignInWithGoogle, doSignOut } from '@/firebase/auth';
 import { auth } from '@/firebase/firebase';
 import { onAuthStateChanged } from 'firebase/auth';
 import { create } from 'zustand'
@@ -15,6 +15,7 @@ interface authStoreTypes {
     currentUser: User | null,
     loginWithGoogle: () => Promise<void>;
     initializeAuth: () => () => void;
+    logout: () => Promise<void>;
 }
 
 export const useAuth = create<authStoreTypes>((set)=> ({
@@ -33,6 +34,13 @@ export const useAuth = create<authStoreTypes>((set)=> ({
           set({ currentUser: user, isAuth: !!user });
         });
         return unsubscribe;
-      },
+    },
+    logout: async () => {
+        try {
+            await doSignOut()
+        } catch(error) {
+            throw error
+        }
+    }
 
 }))
