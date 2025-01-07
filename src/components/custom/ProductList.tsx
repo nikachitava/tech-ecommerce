@@ -14,9 +14,8 @@ const ProductList: React.FC<IProductListProps> = ({ products, isLoading }) => {
 		<div className="flex items-center gap-10 overflow-auto no-scrollbar cursor-grab">
 			{products.length &&
 				products.map((product) => (
-					<Link to={`/product/${product.id}`}>
+					<Link to={`/product/${product.id}`} key={product.id}>
 						<ProductCard
-							key={product.id}
 							id={product.id}
 							discountPercentage={product.discountPercentage}
 							price={product.price}
