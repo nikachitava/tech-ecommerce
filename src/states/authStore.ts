@@ -1,4 +1,4 @@
-import { doSignInWithGoogle, doSignOut } from '@/firebase/auth';
+import { doCreateUserWithEmailAndPassword, doSignInWithEmailAndPassword, doSignInWithGoogle, doSignOut } from '@/firebase/auth';
 import { auth } from '@/firebase/firebase';
 import { onAuthStateChanged } from 'firebase/auth';
 import { create } from 'zustand'
@@ -16,6 +16,8 @@ interface authStoreTypes {
     loginWithGoogle: () => Promise<void>;
     initializeAuth: () => () => void;
     logout: () => Promise<void>;
+    singInEmailAndPassowrd: (email: string, password: string) => Promise<void>,
+    singUpEmailAndPassowrd: (email: string, password: string) => Promise<void>
 }
 
 export const useAuth = create<authStoreTypes>((set)=> ({
@@ -41,6 +43,22 @@ export const useAuth = create<authStoreTypes>((set)=> ({
         } catch(error) {
             throw error
         }
+    },
+    singInEmailAndPassowrd: async (email, password) => {
+        try {
+            await doSignInWithEmailAndPassword({email, password})
+        } catch (error) {
+            throw error
+        }
+    },
+    singUpEmailAndPassowrd: async (email, password) => {
+        try {
+            const user = await doCreateUserWithEmailAndPassword({email, password})
+            console.log(user)
+        } catch(error) {
+            throw error
+        }
     }
+
 
 }))
