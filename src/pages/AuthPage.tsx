@@ -1,32 +1,15 @@
-import { z } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import { Form } from "@/components/ui/form";
-import CustomInput from "@/components/custom/CustomInput";
-import { Link, useNavigate } from "react-router-dom";
-import { useTranslation } from "react-i18next";
-import { authSchema } from "@/schemas/authSchema";
+import AuthFormSection from "@/sections/authpage/AuthFormSection";
 import { useAuth } from "@/states/authStore";
 import { useEffect } from "react";
+import { useTranslation } from "react-i18next";
+import { Link, useNavigate } from "react-router-dom";
 
 const AuthPage = () => {
-	const { loginWithGoogle, isAuth } = useAuth((state) => state);
-
-	const form = useForm<z.infer<typeof authSchema>>({
-		resolver: zodResolver(authSchema),
-		defaultValues: {
-			email: "",
-			password: "",
-		},
-	});
-
-	function onSubmit(values: z.infer<typeof authSchema>) {
-		console.log(values);
-	}
-
-	const { t } = useTranslation();
+	const { isAuth, loginWithGoogle } = useAuth((state) => state);
 
 	const navigate = useNavigate();
+
+	const { t } = useTranslation();
 
 	const handleGoogleSignIn = async () => {
 		try {
@@ -96,48 +79,7 @@ const AuthPage = () => {
 									{t("SignUpEmailMessage")}
 								</div>
 							</div>
-
-							<div className="mx-auto max-w-xs">
-								<Form {...form}>
-									<form
-										onSubmit={form.handleSubmit(onSubmit)}
-										className="space-y-8"
-									>
-										<CustomInput
-											control={form.control}
-											name="email"
-											label={t("Email")}
-											placeholder={t("Password")}
-											styles="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none"
-										/>
-										<CustomInput
-											control={form.control}
-											name="password"
-											label={t("Password")}
-											type="password"
-											placeholder={t("Password")}
-											styles="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none"
-										/>
-										<button className="mt-5 tracking-wide font-semibold bg-indigo-500 text-gray-100 w-full py-4 rounded-lg hover:bg-indigo-700 transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none">
-											<svg
-												className="w-6 h-6 -ml-2"
-												fill="none"
-												stroke="currentColor"
-												strokeWidth="2"
-												strokeLinecap="round"
-												strokeLinejoin="round"
-											>
-												<path d="M16 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" />
-												<circle cx="8.5" cy="7" r="4" />
-												<path d="M20 8v6M23 11h-6" />
-											</svg>
-											<span className="ml-3">
-												{t("SignUp")}
-											</span>
-										</button>
-									</form>
-								</Form>
-							</div>
+							<AuthFormSection />
 						</div>
 					</div>
 				</div>
