@@ -17,6 +17,7 @@
     "Email" : "Email",
     "SignUpEmailMessage" : "Or sign up with e-mail",
     "Password" : "Password",
+    "ConfirmPassword" : "Confirm Password",
     "ContinueWithGoogle" : "Continue with Google",
     "Categories" : "Categories",
     "BrowseByCategory" : "Browse By Category",
