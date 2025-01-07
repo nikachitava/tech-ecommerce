@@ -8,13 +8,13 @@ import NewArrivalsSection from "@/sections/homepage/NewArrivalsSection";
 import { useAuth } from "@/states/authStore";
 
 const Home = () => {
-	const { isAuth } = useAuth((state) => state);
+	const { isAuth, currentUser } = useAuth((state) => state);
 
 	return (
 		<div className="container">
 			{isAuth && (
 				<h1 className="font-bold text-3xl font-roboto py-10">
-					Hello, Nika
+					Hello, {currentUser?.displayName || currentUser?.email}
 				</h1>
 			)}
 			<main className="flex flex-col 2xl:flex-row items-start justify-between gap-10 2xl:gap-28 py-10">
