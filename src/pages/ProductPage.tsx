@@ -1,3 +1,4 @@
+import BuyServices from "@/components/custom/BuyServices";
 import CustomButton from "@/components/custom/CustomButton";
 import QuantityCounter from "@/components/custom/QuantityCounter";
 import { Product } from "@/types/ProductType";
@@ -29,7 +30,7 @@ const ProductPage = () => {
 		<section className="container my-20">
 			{product ? (
 				<div className="flex justify-between">
-					<div className="w-[70%] bg-green-400  grid grid-cols-4 gap-8">
+					<div className="w-[65%] grid grid-cols-4 gap-8">
 						<div className="space-y-6 overflow-auto">
 							{product?.images.map((image, index) => (
 								<div
@@ -56,7 +57,7 @@ const ProductPage = () => {
 							/>
 						</div>
 					</div>
-					<div className="w-[28%]  break-words space-y-6">
+					<div className="w-[30%]  break-words space-y-6">
 						<div className="space-y-4">
 							<h1 className="font-poppins text-text2 text-2xl font-semibold">
 								{product.title}
@@ -78,7 +79,7 @@ const ProductPage = () => {
 							{product.description}
 						</p>
 						<hr className="w-full h-1 bg-black" />
-						<div className="flex  justify-between">
+						<div className="flex  justify-between ">
 							<QuantityCounter />
 							<CustomButton
 								filled
@@ -88,6 +89,7 @@ const ProductPage = () => {
 								textStyles="text-text font-poppins font-medium"
 							/>
 						</div>
+						<BuyServices />
 					</div>
 				</div>
 			) : (
