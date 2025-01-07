@@ -5,6 +5,7 @@ interface ICustomButton {
 	onClick: () => void;
 	filled: boolean;
 	otherStyles?: string;
+	textStyles?: string;
 }
 
 const CustomButton: React.FC<ICustomButton> = ({
@@ -12,6 +13,7 @@ const CustomButton: React.FC<ICustomButton> = ({
 	onClick,
 	filled,
 	otherStyles,
+	textStyles,
 }) => {
 	return (
 		<div
@@ -23,7 +25,9 @@ const CustomButton: React.FC<ICustomButton> = ({
 			{/* Background Animation */}
 			<div className="absolute inset-0 bg-secondary2 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-in-out origin-left"></div>
 
-			<span className="relative z-10 text-black group-hover:text-primary2">
+			<span
+				className={`relative z-10 group-hover:text-primary2 ${textStyles}`}
+			>
 				{title}
 			</span>
 		</div>
