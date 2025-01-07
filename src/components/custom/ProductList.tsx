@@ -1,6 +1,7 @@
 import { Product } from "@/types/ProductType";
 import ProductCard from "./ProductCard";
 import Loader from "./Loader";
+import { Link } from "react-router-dom";
 
 interface IProductListProps {
 	products: Product[];
@@ -13,15 +14,17 @@ const ProductList: React.FC<IProductListProps> = ({ products, isLoading }) => {
 		<div className="flex items-center gap-10 overflow-auto no-scrollbar cursor-grab">
 			{products.length &&
 				products.map((product) => (
-					<ProductCard
-						key={product.id}
-						id={product.id}
-						discountPercentage={product.discountPercentage}
-						price={product.price}
-						thumbnail={product.thumbnail}
-						title={product.title}
-						isDiscount
-					/>
+					<Link to={`/product/${product.id}`}>
+						<ProductCard
+							key={product.id}
+							id={product.id}
+							discountPercentage={product.discountPercentage}
+							price={product.price}
+							thumbnail={product.thumbnail}
+							title={product.title}
+							isDiscount
+						/>
+					</Link>
 				))}
 		</div>
 	);
