@@ -1,3 +1,5 @@
+import React from "react";
+
 interface ICustomButton {
 	title: string;
 	onClick: () => void;
@@ -14,11 +16,16 @@ const CustomButton: React.FC<ICustomButton> = ({
 	return (
 		<div
 			className={`${otherStyles} ${
-				filled && "bg-secondary2"
-			} font-poppins cursor-pointer`}
+				filled ? "bg-secondary2" : "bg-transparent"
+			} font-poppins cursor-pointer overflow-hidden relative group`}
 			onClick={onClick}
 		>
-			{title}
+			{/* Background Animation */}
+			<div className="absolute inset-0 bg-secondary2 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-in-out origin-left"></div>
+
+			<span className="relative z-10 text-black group-hover:text-primary2">
+				{title}
+			</span>
 		</div>
 	);
 };
