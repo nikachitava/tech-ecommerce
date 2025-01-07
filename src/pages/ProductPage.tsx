@@ -1,3 +1,5 @@
+import CustomButton from "@/components/custom/CustomButton";
+import QuantityCounter from "@/components/custom/QuantityCounter";
 import { Product } from "@/types/ProductType";
 import axios from "axios";
 import { useEffect, useState } from "react";
@@ -68,7 +70,7 @@ const ProductPage = () => {
 									Out of stock
 								</span>
 							)}
-							<h4 className="font-poppins text-text2 text-2xl">
+							<h4 className="font-poppins text-text2 text-2xl texttex">
 								${product.price}
 							</h4>
 						</div>
@@ -76,7 +78,16 @@ const ProductPage = () => {
 							{product.description}
 						</p>
 						<hr className="w-full h-1 bg-black" />
-						<div>Quantity</div>
+						<div className="flex  justify-between">
+							<QuantityCounter />
+							<CustomButton
+								filled
+								onClick={() => {}}
+								title="Buy Now"
+								otherStyles="bg-secondary2 flex items-center px-12 py-3 rounded"
+								textStyles="text-text font-poppins font-medium"
+							/>
+						</div>
 					</div>
 				</div>
 			) : (
