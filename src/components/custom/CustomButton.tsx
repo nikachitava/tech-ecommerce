@@ -16,7 +16,7 @@ const CustomButton: React.FC<ICustomButton> = ({
 	textStyles,
 }) => {
 	return (
-		<div
+		<button
 			className={`${otherStyles} ${
 				filled ? "bg-secondary2" : "bg-transparent"
 			} font-poppins cursor-pointer overflow-hidden relative group`}
@@ -30,7 +30,7 @@ const CustomButton: React.FC<ICustomButton> = ({
 			>
 				{title}
 			</span>
-		</div>
+		</button>
 	);
 };
 
