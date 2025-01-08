@@ -9,4 +9,5 @@ export interface CustomInputProps {
 	type?: string;
 	onChange?: (e: any) => void;
     styles?: string;
+    labelStyle?: string;
 }
