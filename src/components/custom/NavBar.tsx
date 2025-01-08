@@ -23,6 +23,10 @@ export const NavBar: FC = () => {
 
 	const { wishCount } = useWishList((state) => state);
 
+	const filteredMenuItems = menuItems.filter(
+		(item) => !(isAuth && item.translationKey === "auth")
+	);
+
 	return (
 		<>
 			<div className="border-b border-button">
@@ -36,25 +40,27 @@ export const NavBar: FC = () => {
 						className="hidden lg:block"
 					>
 						<ul className="flex items-center gap-12">
-							{menuItems.map(({ translationKey, path }) => (
-								<li key={path}>
-									<Link
-										to={path || ""}
-										className={`transition-all hover:text-gray-600 ${
-											pathname === path
-												? "underline font-semibold underline-offset-4"
-												: ""
-										}`}
-										aria-current={
-											pathname === path
-												? "page"
-												: undefined
-										}
-									>
-										{t(translationKey)}
-									</Link>
-								</li>
-							))}
+							{filteredMenuItems.map(
+								({ translationKey, path }) => (
+									<li key={path}>
+										<Link
+											to={path || ""}
+											className={`transition-all hover:text-gray-600 ${
+												pathname === path
+													? "underline font-semibold underline-offset-4"
+													: ""
+											}`}
+											aria-current={
+												pathname === path
+													? "page"
+													: undefined
+											}
+										>
+											{t(translationKey)}
+										</Link>
+									</li>
+								)
+							)}
 						</ul>
 					</nav>
 
