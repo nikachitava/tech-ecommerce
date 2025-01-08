@@ -97,7 +97,14 @@ export const NavBar: FC = () => {
 									/>
 								</button>
 							)}
-							{isProfileMenuOpen && <ProfileMenu />}
+							{isProfileMenuOpen && (
+								<ProfileMenu
+									isProfileMenuOpen={isProfileMenuOpen}
+									closeMenu={() =>
+										setIsProfileMenuOpen(false)
+									}
+								/>
+							)}
 						</div>
 					</div>
 
