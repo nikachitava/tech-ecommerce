@@ -1,5 +1,11 @@
+import AccountProfileMenu from "@/components/custom/AccountProfileMenu";
+
 const AccountPage = () => {
-	return <div>AccountPage</div>;
+	return (
+		<section className="container my-20">
+			<AccountProfileMenu />
+		</section>
+	);
 };
 
 export default AccountPage;
