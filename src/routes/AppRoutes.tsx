@@ -4,6 +4,8 @@ import ErrorPage from "../pages/ErrorPage";
 import RootLayout from "../layouts/RootLayout";
 import Loader from "@/components/custom/Loader";
 import { useAuth } from "@/states/authStore";
+import Dashboard from "@/pages/admin/Dashboard";
+import DashboardLayout from "@/layouts/DashboardLayout";
 
 const Home = lazy(() => import("../pages/Home"));
 const Account = lazy(() => import("../pages/AccountPage"));
@@ -38,7 +40,10 @@ const AppRoutes = () => {
 						<Route path="/wishlist" element={<WishlistPage />} />
 					</Route>
 					<Route path="/auth" element={<Auth />} />
-					/* Eror Page */
+					<Route element={<DashboardLayout />}>
+						<Route path="/admin" element={<Dashboard />} />
+					</Route>
+					/* Error Page */
 					<Route>
 						<Route path="*" element={<ErrorPage />} />
 					</Route>
