@@ -5,6 +5,7 @@ import { z } from "zod";
 import { Form } from "../ui/form";
 import { editProfileFormSchema } from "@/schemas/editProfileFormSchema";
 import { Label } from "../ui/label";
+import CustomButton from "./CustomButton";
 
 const EditProfileForm = () => {
 	const form = useForm<z.infer<typeof editProfileFormSchema>>({
@@ -100,6 +101,15 @@ const EditProfileForm = () => {
 						styles="bg-secondary focus-visible:ring-0 focus-visible:ring-offset-0 focus:outline-none border-0 h-[50px] text-text2 font-poppins text-medium"
 						placeholder="Confirm New Password"
 						labelStyle="font-poppins font-medium"
+					/>
+				</div>
+				<div className="flex justify-end mt-6">
+					<CustomButton
+						filled
+						onClick={() => {}}
+						title="Save Changes"
+						otherStyles="px-12 py-4"
+						textStyles="text-text"
 					/>
 				</div>
 			</form>
