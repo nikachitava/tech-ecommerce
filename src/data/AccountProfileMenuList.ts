@@ -9,6 +9,6 @@ export const menuItems = {
     },
     wishlist: {
         title: "My Wishlist",
-        items: [],
+        items: ["Wishlist"],
     },
 };
