@@ -18,6 +18,7 @@ const CustomInput: React.FC<CustomInputProps> = ({
 	type = "text",
 	placeholder,
 	styles,
+	labelStyle,
 }) => {
 	return (
 		<FormField
@@ -25,7 +26,7 @@ const CustomInput: React.FC<CustomInputProps> = ({
 			name={name}
 			render={({ field }) => (
 				<FormItem>
-					<FormLabel>{label}</FormLabel>
+					<FormLabel className={`${labelStyle}`}>{label}</FormLabel>
 					<FormControl>
 						<Input
 							placeholder={placeholder}
