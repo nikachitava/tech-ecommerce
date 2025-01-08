@@ -93,7 +93,7 @@ export const NavBar: FC = () => {
 									<img
 										src="/icons/profile_icon.svg"
 										alt="profile_icon"
-										className="filter invert-0 brightness-0 group-hover:invert group-hover:brightness-0"
+										className="filter invert-0 brightness-0"
 									/>
 								</button>
 							)}
