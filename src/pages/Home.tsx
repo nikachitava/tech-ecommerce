@@ -1,4 +1,3 @@
-import SideMenuList from "../components/custom/SideMenuList";
 import CategorySection from "@/sections/homepage/CategorySection";
 import DiscountsSection from "@/sections/homepage/DiscountsSection";
 import BestSellingProductsSection from "@/sections/homepage/BestSellingProductsSection";
@@ -6,6 +5,7 @@ import ExploreProductsSection from "@/sections/homepage/ExploreProductsSection";
 import ServiceSection from "@/sections/homepage/ServiceSection";
 import NewArrivalsSection from "@/sections/homepage/NewArrivalsSection";
 import { useAuth } from "@/states/authStore";
+import SideMenuListContainer from "@/containers/SideMenuListContainer";
 
 const Home = () => {
 	const { isAuth, currentUser } = useAuth((state) => state);
@@ -18,7 +18,7 @@ const Home = () => {
 				</h1>
 			)}
 			<main className="flex flex-col 2xl:flex-row items-start justify-between gap-10 2xl:gap-28 py-10">
-				<SideMenuList />
+				<SideMenuListContainer />
 				<img
 					src="/images/main_banner.svg"
 					alt="main_banner"
