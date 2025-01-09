@@ -1,5 +1,5 @@
 export interface SideMenuListItemProps {
     name: string;
-    translationKey: string;
+    translationKey?: string;
     arrow?: boolean
 }
