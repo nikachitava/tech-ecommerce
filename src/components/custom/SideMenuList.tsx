@@ -2,6 +2,7 @@ import SideMenuListItem from "./SideMenuListItem";
 import { ApiError } from "@/types/ApiRequest";
 import { CategoryType } from "@/types/CategoryType";
 import Loader from "./Loader";
+import { useState } from "react";
 
 interface ISideMenuListProps {
 	data?: CategoryType[];
@@ -20,8 +21,7 @@ const SideMenuList: React.FC<ISideMenuListProps> = ({
 		return <div className="text-gray-500">No categories available</div>;
 	}
 
-	console.log("error: ", error);
-	console.log("data: ", console.log("error: ", error));
+	const [openMenuId, setOpenMenuId] = useState<string | null>(null);
 
 	return (
 		<ul className="flex flex-col space-y-4 w-[220px]">
@@ -31,6 +31,12 @@ const SideMenuList: React.FC<ISideMenuListProps> = ({
 					name={item.name}
 					arrow={item.subcategories.length > 0}
 					translationKey={item.slug}
+					subcategories={item.subcategories}
+					id={item._id}
+					isOpen={openMenuId === item._id}
+					onToggle={(id) => {
+						setOpenMenuId(openMenuId === id ? null : id);
+					}}
 				/>
 			))}
 		</ul>
