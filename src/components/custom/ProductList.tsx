@@ -2,29 +2,35 @@ import { Product } from "@/types/ProductType";
 import ProductCard from "./ProductCard";
 import Loader from "./Loader";
 import { Link } from "react-router-dom";
+import { ApiError } from "@/types/ApiRequest";
 
 interface IProductListProps {
-	products: Product[];
+	products?: Product[];
 	isLoading: boolean;
+	error?: ApiError | null;
 }
 
-const ProductList: React.FC<IProductListProps> = ({ products, isLoading }) => {
+const ProductList: React.FC<IProductListProps> = ({
+	products,
+	isLoading,
+	error,
+}) => {
 	if (isLoading) return <Loader />;
+	if (error) return <h1>{error.message}</h1>;
 	return (
 		<div className="flex items-center gap-10 overflow-auto no-scrollbar cursor-grab">
-			{products.length &&
-				products.map((product) => (
-					<Link to={`/product/${product.id}`} key={product.id}>
-						<ProductCard
-							id={product.id}
-							discountPercentage={product.discountPercentage}
-							price={product.price}
-							thumbnail={product.thumbnail}
-							title={product.title}
-							isDiscount
-						/>
-					</Link>
-				))}
+			{products?.map((product) => (
+				<Link to={`/product/${product._id}`} key={product._id}>
+					<ProductCard
+						id={product._id}
+						discountPercentage={30}
+						price={product.price}
+						thumbnail={product.thumbnail}
+						title={product.name}
+						isDiscount
+					/>
+				</Link>
+			))}
 		</div>
 	);
 };
