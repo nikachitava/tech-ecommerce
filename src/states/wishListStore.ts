@@ -3,8 +3,8 @@ import { create } from "zustand";
 interface wishListState {
 	wishCount: number;
 	wishList: any;
-	addToWishList: (id: number) => void;
-	removeFromWishList: (id: number) => void;
+	addToWishList: (id: string) => void;
+	removeFromWishList: (id: string) => void;
 }
 
 export const useWishList = create<wishListState>((set) => ({
@@ -13,7 +13,7 @@ export const useWishList = create<wishListState>((set) => ({
 	addToWishList: (id) =>
 		set((state) => {
 			const updatedWishList = state.wishList.includes(id)
-				? state.wishList.filter((wishId: number) => wishId !== id)
+				? state.wishList.filter((wishId: string) => wishId !== id)
 				: [...state.wishList, id];
 
 			localStorage.setItem("wishList", JSON.stringify(updatedWishList));
@@ -22,7 +22,7 @@ export const useWishList = create<wishListState>((set) => ({
 	removeFromWishList: (id) =>
 		set((state) => {
 			const updatedWishList = state.wishList.filter(
-				(wishId: number) => wishId !== id
+				(wishId: string) => wishId !== id
 			);
 
 			localStorage.setItem("wishList", JSON.stringify(updatedWishList)); 
