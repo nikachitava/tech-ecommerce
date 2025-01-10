@@ -22,25 +22,27 @@ const ProductPageSection = ({
 	return (
 		<section className="container my-20">
 			{data ? (
-				<div className="flex justify-between">
-					<div className="w-[65%] grid grid-cols-4 gap-8">
-						<div className="space-y-6 overflow-auto">
-							{data?.images.map((image, index) => (
-								<div
-									key={index}
-									className={`flex items-center justify-center bg-secondary py-3 px-6 row-start-${[
-										index + 1,
-									]}`}
-								>
-									<img
-										src={image}
-										alt={image}
-										loading="lazy"
-										className="size-32"
-									/>
-								</div>
-							))}
-						</div>
+				<div className="flex flex-col  gap-20 lg:flex-row justify-between items-center">
+					<div className="lg:w-[65%] grid grid-cols-4 gap-8">
+						{!data?.images && (
+							<div className="space-y-6 overflow-auto">
+								{data?.images?.map((image, index) => (
+									<div
+										key={index}
+										className={`flex items-center justify-center bg-secondary py-3 px-6 row-start-${[
+											index + 1,
+										]}`}
+									>
+										<img
+											src={image}
+											alt={image}
+											loading="lazy"
+											className="size-32"
+										/>
+									</div>
+								))}
+							</div>
+						)}
 
 						<div className="bg-secondary flex items-center justify-center col-span-3 row-span-4">
 							<img
@@ -50,7 +52,7 @@ const ProductPageSection = ({
 							/>
 						</div>
 					</div>
-					<div className="w-[30%]  break-words space-y-6">
+					<div className="lg:w-[30%]  break-words space-y-6">
 						<div className="space-y-4">
 							<h1 className="font-poppins text-text2 text-2xl font-semibold">
 								{data.name}
