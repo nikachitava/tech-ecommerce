@@ -17,6 +17,25 @@ export const useGetProductByIdQueries = (id: string) => {
     })
 }
 
+export const useGetNewestProducts = () => {
+    return useQuery<Product[], ApiError>({
+        queryKey: ['getNewestProducts'],
+        queryFn: fetchNewestProducts
+    })
+}
+
+const fetchNewestProducts = async (): Promise<Product[]>  => {
+    try {
+        const { data } = await useAxios.get('/products/newestproducts') 
+        return data;
+    } catch (error: any) {
+        throw {
+            message: error?.response?.data?.message || error?.message || 'Failed to fetch products',
+            status: error?.response?.status || 500
+        } as ApiError;
+    }
+}
+
 const fetchProducts = async (): Promise<Product[]> => {
     try {
         const { data } = await useAxios.get('/products');
