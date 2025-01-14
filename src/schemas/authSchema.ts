@@ -6,7 +6,7 @@ export const authSchema = z
 			.string()
 			.min(1, { message: "This field has to be filled." })
 			.email("This is not a valid email."),
-		password: z.string().min(8).max(50),
+		password: z.string().min(6).max(50),
 	});
 
 
