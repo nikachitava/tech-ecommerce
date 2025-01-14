@@ -14,7 +14,6 @@ const AuthFormSection = () => {
 		defaultValues: {
 			email: "",
 			password: "",
-			confirm_password: "",
 		},
 	});
 
@@ -38,6 +37,9 @@ const AuthFormSection = () => {
 
 	return (
 		<div className="mx-auto max-w-xs">
+			<h1 className="text-center mb-4 font-poppins text-2xl xl:text-3xl font-medium text-primary1 uppercase">
+				{t("SignIn")}
+			</h1>
 			<Form {...form}>
 				<form
 					onSubmit={form.handleSubmit(handleSignInWithGoogle)}
@@ -48,7 +50,7 @@ const AuthFormSection = () => {
 						name="email"
 						label={t("Email")}
 						placeholder={t("Email")}
-						styles="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none"
+						styles="w-full px-8 py-6 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none"
 					/>
 					<CustomInput
 						control={form.control}
@@ -56,15 +58,7 @@ const AuthFormSection = () => {
 						label={t("Password")}
 						type="password"
 						placeholder={t("Password")}
-						styles="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none"
-					/>
-					<CustomInput
-						control={form.control}
-						name="confirm_password"
-						label={t("ConfirmPassword")}
-						type="password"
-						placeholder={t("Password")}
-						styles="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none"
+						styles="w-full px-8 py-6 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none"
 					/>
 					<button className="mt-5 tracking-wide font-semibold bg-indigo-500 text-gray-100 w-full py-4 rounded-lg hover:bg-indigo-700 transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none">
 						{isSubmitting ? (
@@ -83,7 +77,7 @@ const AuthFormSection = () => {
 									<circle cx="8.5" cy="7" r="4" />
 									<path d="M20 8v6M23 11h-6" />
 								</svg>
-								<span className="ml-3">{t("SignUp")}</span>
+								<span className="ml-3">{t("SignIn")}</span>
 							</>
 						)}
 					</button>
