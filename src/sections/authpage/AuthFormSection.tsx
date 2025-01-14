@@ -27,7 +27,7 @@ const AuthFormSection = () => {
 
 	const loginUser = async (values: z.infer<typeof authSchema>) => {
 		try {
-			await signIn(values.email, values.password);
+			await signIn(values);
 		} catch (error) {
 			console.log(error);
 		}

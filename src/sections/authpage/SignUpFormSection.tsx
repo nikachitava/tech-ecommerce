@@ -7,8 +7,11 @@ import { useTranslation } from "react-i18next";
 import { signUpSchema } from "@/schemas/authSchema";
 import { useAuth } from "@/states/authStore";
 import Loader from "@/components/custom/Loader";
+import { useState } from "react";
 
 const SignUpFormSection = () => {
+	const [error, setError] = useState("");
+
 	const form = useForm<z.infer<typeof signUpSchema>>({
 		resolver: zodResolver(signUpSchema),
 		defaultValues: {
@@ -29,15 +32,15 @@ const SignUpFormSection = () => {
 	const { signUp } = useAuth((state) => state);
 
 	const registerUser = async (values: z.infer<typeof signUpSchema>) => {
+		setError("");
 		try {
-			await signUp(
-				values.name,
-				values.lastname,
-				values.email,
-				values.password
-			);
-		} catch (error) {
-			console.log(error);
+			await signUp(values);
+		} catch (error: any) {
+			if (error instanceof Error) {
+				setError(error.message);
+			} else {
+				setError("An unexpected error occurred. Please try again.");
+			}
 		}
 	};
 
@@ -88,6 +91,13 @@ const SignUpFormSection = () => {
 						placeholder={t("Password")}
 						styles="w-full px-8 py-6 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none"
 					/>
+					{error && (
+						<div className="p-3 rounded-md bg-red-50 border border-red-200">
+							<p className="text-red-600 text-sm font-medium">
+								{error}
+							</p>
+						</div>
+					)}
 					<button className="mt-5 tracking-wide font-semibold bg-indigo-500 text-gray-100 w-full py-6 rounded-lg hover:bg-indigo-700 transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none">
 						{isSubmitting ? (
 							<Loader />
