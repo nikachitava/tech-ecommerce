@@ -8,6 +8,7 @@ import { signUpSchema } from "@/schemas/authSchema";
 import { useAuth } from "@/states/authStore";
 import Loader from "@/components/custom/Loader";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const SignUpFormSection = () => {
 	const [error, setError] = useState("");
@@ -29,12 +30,15 @@ const SignUpFormSection = () => {
 
 	const { t } = useTranslation();
 
+	const navigate = useNavigate();
+
 	const { signUp } = useAuth((state) => state);
 
 	const registerUser = async (values: z.infer<typeof signUpSchema>) => {
 		setError("");
 		try {
 			await signUp(values);
+			navigate("/auth");
 		} catch (error: any) {
 			if (error instanceof Error) {
 				setError(error.message);

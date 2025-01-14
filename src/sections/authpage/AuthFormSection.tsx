@@ -7,6 +7,7 @@ import { useTranslation } from "react-i18next";
 import { authSchema } from "@/schemas/authSchema";
 import { useAuth } from "@/states/authStore";
 import Loader from "@/components/custom/Loader";
+import { useNavigate } from "react-router-dom";
 
 const AuthFormSection = () => {
 	const form = useForm<z.infer<typeof authSchema>>({
@@ -23,11 +24,14 @@ const AuthFormSection = () => {
 
 	const { t } = useTranslation();
 
+	const navigate = useNavigate();
+
 	const { signIn } = useAuth((state) => state);
 
 	const loginUser = async (values: z.infer<typeof authSchema>) => {
 		try {
 			await signIn(values);
+			navigate("/");
 		} catch (error) {
 			console.log(error);
 		}
