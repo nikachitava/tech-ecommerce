@@ -23,13 +23,11 @@ const AuthFormSection = () => {
 
 	const { t } = useTranslation();
 
-	const { singUpEmailAndPassowrd } = useAuth((state) => state);
+	const { signIn } = useAuth((state) => state);
 
-	const handleSignInWithGoogle = async (
-		values: z.infer<typeof authSchema>
-	) => {
+	const loginUser = async (values: z.infer<typeof authSchema>) => {
 		try {
-			await singUpEmailAndPassowrd(values.email, values.password);
+			await signIn(values.email, values.password);
 		} catch (error) {
 			console.log(error);
 		}
@@ -42,7 +40,7 @@ const AuthFormSection = () => {
 			</h1>
 			<Form {...form}>
 				<form
-					onSubmit={form.handleSubmit(handleSignInWithGoogle)}
+					onSubmit={form.handleSubmit(loginUser)}
 					className="space-y-8"
 				>
 					<CustomInput
