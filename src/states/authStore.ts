@@ -22,7 +22,7 @@ interface authStoreTypes {
 	logout: () => Promise<void>;
 }
 
-export const useAuth = create<authStoreTypes>(() => ({
+export const useAuth = create<authStoreTypes>((set) => ({
 	isAuth: false,
 	currentUser: null,
 	signUp: async (data) => {
@@ -44,7 +44,10 @@ export const useAuth = create<authStoreTypes>(() => ({
 	signIn: async (data) => {
 		try {
             const response = await useAxios.post("/users/auth", data);
-            console.log(response)
+            set({
+				isAuth: true,
+				// currentUser: response.data.user, // Assuming the response includes user data
+			});
             return response;
 
         } catch (error) {
@@ -63,4 +66,3 @@ export const useAuth = create<authStoreTypes>(() => ({
 		console.log("log out");
 	},
 }));
-1
