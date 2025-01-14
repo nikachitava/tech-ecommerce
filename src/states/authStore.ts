@@ -1,6 +1,3 @@
-import { doCreateUserWithEmailAndPassword, doSignInWithEmailAndPassword, doSignInWithGoogle, doSignOut } from '@/firebase/auth';
-import { auth } from '@/firebase/firebase';
-import { onAuthStateChanged } from 'firebase/auth';
 import { create } from 'zustand'
 
 interface User {
@@ -13,52 +10,22 @@ interface User {
 interface authStoreTypes {
     isAuth: boolean;
     currentUser: User | null,
-    loginWithGoogle: () => Promise<void>;
-    initializeAuth: () => () => void;
+    signUp: (name: string, lastname: string, emai: string, password: string) => Promise<void>;
+    signIn: (emai: string, password: string) => Promise<void>;
     logout: () => Promise<void>;
-    singInEmailAndPassowrd: (email: string, password: string) => Promise<void>,
-    singUpEmailAndPassowrd: (email: string, password: string) => Promise<void>
 }
 
-export const useAuth = create<authStoreTypes>((set)=> ({
+export const useAuth = create<authStoreTypes>(()=> ({
     isAuth: false,
     currentUser: null,
-    loginWithGoogle: async () => {
-        try {
-            const user = await doSignInWithGoogle();
-            set({ currentUser: user, isAuth: true });
-        } catch (error) {
-            throw error
-        }
+    signUp: async () => {
+        console.log("sign up")
     },
-    initializeAuth: () => {
-        const unsubscribe = onAuthStateChanged(auth, (user) => {
-          set({ currentUser: user, isAuth: !!user });
-        });
-        return unsubscribe;
+    signIn: async () => {
+        console.log("sign in")
     },
     logout: async () => {
-        try {
-            await doSignOut()
-        } catch(error) {
-            throw error
-        }
-    },
-    singInEmailAndPassowrd: async (email, password) => {
-        try {
-            await doSignInWithEmailAndPassword({email, password})
-        } catch (error) {
-            throw error
-        }
-    },
-    singUpEmailAndPassowrd: async (email, password) => {
-        try {
-            const user = await doCreateUserWithEmailAndPassword({email, password})
-            console.log(user)
-        } catch(error) {
-            throw error
-        }
+        console.log("log out")
     }
-
 
 }))
