@@ -1,9 +1,8 @@
-import { lazy, Suspense, useEffect } from "react";
+import { lazy, Suspense } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import ErrorPage from "../pages/ErrorPage";
 import RootLayout from "../layouts/RootLayout";
 import Loader from "@/components/custom/Loader";
-import { useAuth } from "@/states/authStore";
 import Dashboard from "@/pages/admin/Dashboard";
 import DashboardLayout from "@/layouts/DashboardLayout";
 
@@ -18,11 +17,6 @@ const ProductPage = lazy(() => import("../pages/ProductPage"));
 const WishlistPage = lazy(() => import("../pages/Wishlist"));
 
 const AppRoutes = () => {
-	useEffect(() => {
-		const unsubscribe = useAuth.getState().initializeAuth();
-		return () => unsubscribe();
-	}, []);
-
 	return (
 		<Router>
 			<Suspense fallback={<Loader />}>
