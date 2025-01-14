@@ -14,6 +14,7 @@
     "groceriesNPets": "სურსათი & ცხოველები",
     "HealthNBeauty": "ჯანმრთელობა & თავის მოვლა",
     "SignUp" : "რეგისტრაცია",
+    "SignIn" : "ავტორიზაცია",
     "Email" : "მეილი",
     "SignUpEmailMessage" : "ან დარეგისტრირდი ელექტრონული ფოსტით",
     "Password" : "პაროლი",
@@ -55,8 +56,13 @@
     "YourName": "თქვენი სახელი",
     "YourEmail": "თქვენი მეილი",
     "YourPhone": "თქვენი ნომერი",
-    "YourMessage": "თქვენი შეტყობინება"
+    "YourMessage": "თქვენი შეტყობინება",
 
+    "name": "სახელი",
+    "lastname": "გვარი",
+
+    "AlreadyHaveAnAccount": "უკვე მაქვს ანგარიში",
+    "DontHaveAnAccount": "არ მაქვს ანგარიში"
 
     
 }

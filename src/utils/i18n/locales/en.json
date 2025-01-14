@@ -14,6 +14,7 @@
     "groceriesNPets": "Groceries & Pets",
     "HealthNBeauty": "Health & Beauty",
     "SignUp" : "Sign up",
+    "SignIn" : "Sign in",
     "Email" : "Email",
     "SignUpEmailMessage" : "Or sign up with e-mail",
     "Password" : "Password",
@@ -55,7 +56,13 @@
     "YourName": "Your Name",
     "YourEmail": "Your Email",
     "YourPhone": "Your Phone",
-    "YourMessage": "Your Message"
+    "YourMessage": "Your Message",
+
+    "name": "Name",
+    "lastname": "Lastname",
+
+    "AlreadyHaveAnAccount": "I already have an account",
+    "DontHaveAnAccount": "I dont have an account"
     
    
     
