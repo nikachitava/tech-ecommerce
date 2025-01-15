@@ -14,7 +14,7 @@ const Home = () => {
 		<div className="container">
 			{isAuth && (
 				<h1 className="font-bold text-3xl font-roboto py-10">
-					Hello, {currentUser?.name || currentUser?.email}
+					Hello, {currentUser?.name}
 				</h1>
 			)}
 			<main className="flex flex-col 2xl:flex-row items-start justify-between gap-10 2xl:gap-28 py-10">
