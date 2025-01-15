@@ -4,7 +4,7 @@ import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
 
 import AppRoutes from "./routes/AppRoutes";
 
-import "./utils/i18n";
+import "./utils/i18n/locales";
 
 import "./index.css";
 
