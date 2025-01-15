@@ -3,6 +3,8 @@ import { UserType } from "@/types/UserType";
 import { AxiosError, AxiosResponse } from "axios";
 import { create } from "zustand";
 
+useAxios.defaults.withCredentials = true;
+
 interface AuthError extends Error {
     code?: string;
     statusCode?: number;
@@ -18,8 +20,9 @@ interface authStoreTypes {
 		email: string;
 		password: string;
 	}) => Promise<AxiosResponse<any, any>>;
-	signIn: (data: {email: string, password: string}) => Promise<AxiosResponse<any, any>>;
+	signIn: (data: {email: string, password: string}) => Promise<void>;
 	logout: () => Promise<void>;
+    checkAuth: () => Promise<void>;
 }
 
 export const useAuth = create<authStoreTypes>((set) => ({
@@ -45,10 +48,9 @@ export const useAuth = create<authStoreTypes>((set) => ({
 		try {
             const response = await useAxios.post("/users/auth", data);
             set({
-				isAuth: true,
-				// currentUser: response.data.user, // Assuming the response includes user data
-			});
-            return response;
+                isAuth: true,
+                currentUser: response.data.user,
+            });
 
         } catch (error) {
             if (error instanceof AxiosError) {
@@ -63,6 +65,38 @@ export const useAuth = create<authStoreTypes>((set) => ({
         }
 	},
 	logout: async () => {
-		console.log("log out");
+		try {
+            await useAxios.post("/users/logout");
+            set({ isAuth: false, currentUser: null });
+        } catch (error) {
+            console.error("Logout error:", error);
+            set({ isAuth: false, currentUser: null });
+        }
 	},
+    checkAuth: async () => {
+        try {
+            const response = await useAxios.get("/users/me");
+            set({
+                isAuth: true,
+                currentUser: response.data.user
+            });
+            console.log("run checkout: ", response.data.user)
+        } catch (error) {
+            set({ isAuth: false, currentUser: null });
+        }
+    }
 }));
+
+
+useAxios.interceptors.response.use(
+    (response) => response,
+    async (error) => {
+        if (error.response?.status === 401) {
+            const auth = useAuth.getState();
+            auth.logout();
+            
+            window.location.href = '/auth';
+        }
+        return Promise.reject(error);
+    }
+);
