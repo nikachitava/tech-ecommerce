@@ -14,6 +14,7 @@ interface AuthError extends Error {
 interface authStoreTypes {
 	isAuth: boolean;
 	currentUser: UserType | null;
+    isLoading: boolean;
 	signUp: (data: {
 		name: string;
 		lastname: string;
@@ -28,6 +29,7 @@ interface authStoreTypes {
 export const useAuth = create<authStoreTypes>((set) => ({
 	isAuth: false,
 	currentUser: null,
+    isLoading: true,
 	signUp: async (data) => {
 		try {
 			const response = await useAxios.post("/users/singup", data);
@@ -75,28 +77,16 @@ export const useAuth = create<authStoreTypes>((set) => ({
 	},
     checkAuth: async () => {
         try {
+            set({ isLoading: true });
             const response = await useAxios.get("/users/me");
             set({
                 isAuth: true,
-                currentUser: response.data.user
+                currentUser: response.data.user,
+                isLoading: false
             });
-            console.log("run checkout: ", response.data.user)
         } catch (error) {
-            set({ isAuth: false, currentUser: null });
+            set({ isAuth: false, currentUser: null, isLoading: false });
         }
     }
 }));
 
-
-useAxios.interceptors.response.use(
-    (response) => response,
-    async (error) => {
-        if (error.response?.status === 401) {
-            const auth = useAuth.getState();
-            auth.logout();
-            
-            window.location.href = '/auth';
-        }
-        return Promise.reject(error);
-    }
-);
