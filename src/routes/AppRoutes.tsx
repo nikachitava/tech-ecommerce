@@ -19,11 +19,13 @@ const ProductPage = lazy(() => import("../pages/ProductPage"));
 const WishlistPage = lazy(() => import("../pages/Wishlist"));
 
 const AppRoutes = () => {
-	const { checkAuth } = useAuth();
+	const { checkAuth, isLoading } = useAuth();
 
 	useEffect(() => {
 		checkAuth();
 	}, []);
+
+	if (isLoading) return <Loader />;
 
 	return (
 		<Router>
