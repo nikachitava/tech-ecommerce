@@ -1,10 +1,12 @@
-import { lazy, Suspense } from "react";
+import { lazy, Suspense, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import ErrorPage from "../pages/ErrorPage";
 import RootLayout from "../layouts/RootLayout";
 import Loader from "@/components/custom/Loader";
 import Dashboard from "@/pages/admin/Dashboard";
 import DashboardLayout from "@/layouts/DashboardLayout";
+import { useAuth } from "@/states/authStore";
+import { ProtectedRoute } from "./ProtectedRoute";
 
 const Home = lazy(() => import("../pages/Home"));
 const Account = lazy(() => import("../pages/AccountPage"));
@@ -17,6 +19,12 @@ const ProductPage = lazy(() => import("../pages/ProductPage"));
 const WishlistPage = lazy(() => import("../pages/Wishlist"));
 
 const AppRoutes = () => {
+	const { checkAuth } = useAuth();
+
+	useEffect(() => {
+		checkAuth();
+	}, []);
+
 	return (
 		<Router>
 			<Suspense fallback={<Loader />}>
@@ -28,10 +36,38 @@ const AppRoutes = () => {
 						<Route path="/contact" element={<Contact />} />
 						<Route path="/product/:id" element={<ProductPage />} />
 						/* Private Routes */
-						<Route path="/account" element={<Account />} />
-						<Route path="/cart" element={<Cart />} />
-						<Route path="/checkout" element={<Checkout />} />
-						<Route path="/wishlist" element={<WishlistPage />} />
+						<Route
+							path="/account"
+							element={
+								<ProtectedRoute>
+									<Account />
+								</ProtectedRoute>
+							}
+						/>
+						<Route
+							path="/cart"
+							element={
+								<ProtectedRoute>
+									<Cart />
+								</ProtectedRoute>
+							}
+						/>
+						<Route
+							path="/checkout"
+							element={
+								<ProtectedRoute>
+									<Checkout />
+								</ProtectedRoute>
+							}
+						/>
+						<Route
+							path="/wishlist"
+							element={
+								<ProtectedRoute>
+									<WishlistPage />
+								</ProtectedRoute>
+							}
+						/>
 					</Route>
 					<Route path="/auth" element={<Auth />} />
 					<Route element={<DashboardLayout />}>
