@@ -7,6 +7,7 @@ import Dashboard from "@/pages/admin/Dashboard";
 import DashboardLayout from "@/layouts/DashboardLayout";
 import { useAuth } from "@/states/authStore";
 import { ProtectedRoute } from "./ProtectedRoute";
+import FilterProducts from "@/pages/FilterProducts";
 
 const Home = lazy(() => import("../pages/Home"));
 const Account = lazy(() => import("../pages/AccountPage"));
@@ -31,6 +32,7 @@ const AppRoutes = () => {
 		<Router>
 			<Suspense fallback={<Loader />}>
 				<Routes>
+					<Route path="/productfilter" element={<FilterProducts />} />
 					/* Public Routes */
 					<Route element={<RootLayout />}>
 						<Route path="/" element={<Home />} />
