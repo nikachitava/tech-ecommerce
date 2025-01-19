@@ -24,7 +24,7 @@ const ProductList: React.FC<IProductListProps> = ({
 					<ProductCard
 						id={product._id}
 						price={product.price}
-						discountPercentage={product.discountPercent}
+						discountPercent={product.discountPercent}
 						thumbnail={product.thumbnail}
 						title={product.name}
 					/>

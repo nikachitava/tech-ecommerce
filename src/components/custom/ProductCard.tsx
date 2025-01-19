@@ -26,6 +26,7 @@ const ProductCard: React.FC<IProductCardProps> = ({
 						</span>
 					</div>
 				)}
+				<p className="text-xl">{discountPercent}</p>
 				<img src={thumbnail} alt={thumbnail} className="" />
 				<div className="absolute right-[12px] top-0">
 					<img
