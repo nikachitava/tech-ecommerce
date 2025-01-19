@@ -5,7 +5,7 @@ export interface Product {
 	sku: string;
 	description: string;
 	price: number;
-	comparePrice: number;
+	discountPercent: number;
 	category: string;
 	subcategory: string;
 	brand: string;

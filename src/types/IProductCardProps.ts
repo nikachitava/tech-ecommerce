@@ -1,8 +1,7 @@
 export interface IProductCardProps {
 	id: string;
-	discountPercentage?: number;
+	discountPercentage: number | null;
 	title: string;
 	price: number;
 	thumbnail: string;
-    isDiscount: boolean;
 }
