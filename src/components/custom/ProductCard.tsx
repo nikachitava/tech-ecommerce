@@ -1,4 +1,5 @@
 import heart from "/icons/heart.svg";
+import trash from "/icons/trash.svg";
 import { IProductCardProps } from "@/types/IProductCardProps";
 import { useWishList } from "@/states/wishListStore";
 
@@ -7,9 +8,11 @@ const ProductCard: React.FC<IProductCardProps> = ({
 	title,
 	discountPercent,
 	price,
+	heartIcon,
+	trashIcon,
 	thumbnail,
 }) => {
-	const { addToWishList, wishList } = useWishList((state) => state);
+	const { addToWishList, removeFromWishList } = useWishList((state) => state);
 
 	const isDiscountPrice = discountPercent
 		? parseFloat((price - (price * discountPercent) / 100).toFixed(2))
@@ -28,16 +31,28 @@ const ProductCard: React.FC<IProductCardProps> = ({
 				<p className="text-xl">{discountPercent}</p>
 				<img src={thumbnail} alt={thumbnail} className="" />
 				<div className="absolute right-[12px] top-0">
-					<img
-						src={heart}
-						alt="ss"
-						onClick={(event) => {
-							event.stopPropagation();
-							event.preventDefault();
-							addToWishList(id);
-							console.log(wishList);
-						}}
-					/>
+					{heartIcon && (
+						<img
+							src={heart}
+							alt="heart"
+							onClick={(event) => {
+								event.stopPropagation();
+								event.preventDefault();
+								addToWishList(id);
+							}}
+						/>
+					)}
+					{trashIcon && (
+						<img
+							src={trash}
+							alt="trash"
+							onClick={(event) => {
+								event.stopPropagation();
+								event.preventDefault();
+								removeFromWishList(id);
+							}}
+						/>
+					)}
 				</div>
 				<div className="absolute bg-black bottom-0 left-0 w-full translate-y-full group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-1000">
 					<p className="font-poppins font-medium text-text text-center py-1">
