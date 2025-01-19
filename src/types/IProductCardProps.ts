@@ -4,4 +4,6 @@ export interface IProductCardProps {
 	title: string;
 	price: number;
 	thumbnail: string;
+    heartIcon?: boolean;
+    trashIcon?: boolean;
 }
