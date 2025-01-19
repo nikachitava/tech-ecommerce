@@ -23,11 +23,10 @@ const ExploreProductsList: React.FC<IProductListProps> = ({
 				<Link to={`/product/${product._id}`} key={product._id}>
 					<ProductCard
 						id={product._id}
-						discountPercentage={30}
+						discountPercent={product.discountPercent}
 						price={product.price}
 						thumbnail={product.thumbnail}
 						title={product.name}
-						isDiscount
 					/>
 				</Link>
 			))}
