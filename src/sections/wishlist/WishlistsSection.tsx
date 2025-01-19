@@ -23,6 +23,7 @@ const WishlistsSection: React.FC<IWishlistSection> = ({ productIds }) => {
 					price={item.price}
 					thumbnail={item.thumbnail}
 					title={item.name}
+					trashIcon
 				/>
 			))}
 		</section>

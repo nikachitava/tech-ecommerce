@@ -27,6 +27,7 @@ const ProductList: React.FC<IProductListProps> = ({
 						discountPercent={product.discountPercent}
 						thumbnail={product.thumbnail}
 						title={product.name}
+						heartIcon
 					/>
 				</Link>
 			))}
