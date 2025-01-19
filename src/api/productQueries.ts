@@ -3,6 +3,13 @@ import { useAxios } from "@/hooks/useAxios"
 import { ApiError } from "@/types/ApiRequest"
 import { Product } from "@/types/ProductType"
 
+export const useGetProductsByIdQueries = (productIds: string[]) => {
+    return useQuery({
+        queryKey: ['getProductsById', productIds],
+        queryFn: ()=> fetchProductsById(productIds)
+    })
+}
+
 export const useGetProductQueries = () => {
     return useQuery<Product[], ApiError>({
         queryKey: ['getProducts'],
@@ -22,6 +29,18 @@ export const useGetNewestProducts = () => {
         queryKey: ['getNewestProducts'],
         queryFn: fetchNewestProducts
     })
+}
+
+const fetchProductsById = async (productIds: string[]): Promise<Product[]> => {
+    try {
+        const { data } = await useAxios.post('/products/getproducts', {productIds}) 
+        return data;
+    } catch (error: any) {
+        throw {
+            message: error?.response?.data?.message || error?.message || 'Failed to fetch products',
+            status: error?.response?.status || 500
+        } as ApiError;
+    } 
 }
 
 const fetchNewestProducts = async (): Promise<Product[]>  => {

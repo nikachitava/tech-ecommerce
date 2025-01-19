@@ -1,15 +1,26 @@
 import CustomButton from "@/components/custom/CustomButton";
+import WishlistsSection from "@/sections/wishlist/WishlistsSection";
 import { useWishList } from "@/states/wishListStore";
 
 const Wishlist = () => {
-	const { wishCount } = useWishList((state) => state);
+	const { wishCount, wishList, clearWishList } = useWishList(
+		(state) => state
+	);
 
 	return (
 		<section className="container my-20 space-y-16">
 			<div className="flex items-center justify-between">
-				<h1 className="font-poppins font-medium text-xl">
-					Wishlist ({wishCount})
-				</h1>
+				<div className="space-y-4">
+					<h1 className="font-poppins font-medium text-xl">
+						Wishlist ({wishCount})
+					</h1>
+					<p
+						className="text-lg font-poppins font-medium text-secondary2 cursor-pointer"
+						onClick={clearWishList}
+					>
+						Clear wishlist
+					</p>
+				</div>
 				<CustomButton
 					title="Move All To Bag"
 					otherStyles="py-4 px-12 border border-[#000000] rounded"
@@ -18,7 +29,7 @@ const Wishlist = () => {
 				/>
 			</div>
 			<div>
-				<h1>ssdadasdqw</h1>
+				<WishlistsSection productIds={wishList} />
 			</div>
 		</section>
 	);
