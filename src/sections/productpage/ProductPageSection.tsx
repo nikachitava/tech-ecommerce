@@ -66,9 +66,26 @@ const ProductPageSection = ({
 									Out of stock
 								</span>
 							)}
-							<h4 className="font-poppins text-text2 text-2xl texttex">
-								${data.price}
-							</h4>
+							<div className="flex items-center gap-2">
+								<h4 className="font-poppins text-secondary2 text-2xl texttex">
+									$
+									{data.discountPercent
+										? parseFloat(
+												(
+													data.price -
+													(data.price *
+														data.discountPercent) /
+														100
+												).toFixed(2)
+										  )
+										: data.price}
+								</h4>
+								{data.discountPercent && (
+									<p className="text-black font-medium font-poppins line-through opacity-50">
+										${data.price}
+									</p>
+								)}
+							</div>
 						</div>
 						<p className="font-poppins text-text2 text-sm">
 							{data.description}
