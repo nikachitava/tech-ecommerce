@@ -5,6 +5,7 @@ interface wishListState {
 	wishList: any;
 	addToWishList: (id: string) => void;
 	removeFromWishList: (id: string) => void;
+    clearWishList: () => void;
 }
 
 export const useWishList = create<wishListState>((set) => ({
@@ -28,4 +29,10 @@ export const useWishList = create<wishListState>((set) => ({
 			localStorage.setItem("wishList", JSON.stringify(updatedWishList)); 
 			return { wishList: updatedWishList, wishCount: updatedWishList.length };
 		}),
+    clearWishList: ()=> 
+        set(() => {
+			localStorage.removeItem("wishList");
+			return { wishList: [], wishCount: 0 };
+		}),
+    
 }));
