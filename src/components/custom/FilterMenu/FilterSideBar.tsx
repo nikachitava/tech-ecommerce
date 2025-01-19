@@ -2,13 +2,14 @@ import { Button } from "@/components/ui/button";
 import { X } from "lucide-react";
 import PriceFilter from "./PriceFilter";
 import CategoryFilter from "./CategoryFilter";
+import { CategoryType } from "@/types/CategoryType";
 
 interface FilterSidebarProps {
 	isOpen: boolean;
 	onClose: () => void;
 	priceRange: [number, number];
 	onPriceChange: (value: [number, number]) => void;
-	categories: Array<{ id: string; name: string; count: number }>;
+	categories: CategoryType[] | undefined;
 	selectedCategories: string[];
 	onCategoryChange: (categoryId: string) => void;
 }

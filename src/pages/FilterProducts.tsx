@@ -6,14 +6,15 @@ import { useGetProductQueries } from "@/api/productQueries";
 import ProductCard from "@/components/custom/ProductCard";
 import { Link } from "react-router-dom";
 import Loader from "@/components/custom/Loader";
+import { useGetCategoriesQuery } from "@/api/categoryQueries";
 // import SortDropdown from "@/components/filters/SortDropdown";
 
-const SAMPLE_CATEGORIES = [
-	{ id: "1", name: "Electronics", count: 120 },
-	{ id: "2", name: "Clothing", count: 84 },
-	{ id: "3", name: "Books", count: 56 },
-	{ id: "4", name: "Home & Garden", count: 43 },
-];
+// const SAMPLE_CATEGORIES = [
+// 	{ id: "1", name: "Electronics", count: 120 },
+// 	{ id: "2", name: "Clothing", count: 84 },
+// 	{ id: "3", name: "Books", count: 56 },
+// 	{ id: "4", name: "Home & Garden", count: 43 },
+// ];
 
 // const SORT_OPTIONS = [
 // 	{ value: "newest", label: "Newest First" },
@@ -36,6 +37,7 @@ const FilterProducts = () => {
 		);
 	};
 
+	const categories = useGetCategoriesQuery();
 	const { data, isLoading } = useGetProductQueries();
 
 	if (isLoading) return <Loader />;
@@ -64,7 +66,7 @@ const FilterProducts = () => {
 					onClose={() => setIsFilterOpen(false)}
 					priceRange={priceRange}
 					onPriceChange={setPriceRange}
-					categories={SAMPLE_CATEGORIES}
+					categories={categories.data}
 					selectedCategories={selectedCategories}
 					onCategoryChange={handleCategoryChange}
 				/>

@@ -9,18 +9,17 @@ const ProductCard: React.FC<IProductCardProps> = ({
 	discountPercentage,
 	price,
 	thumbnail,
-	isDiscount,
 }) => {
-	const discountPrice = price - (price * discountPercentage) / 100;
-	const roundedPrice = discountPrice.toFixed(2);
-	const roundedFloatPrice = parseFloat(roundedPrice);
+	// const discountPrice = parseFloat((price - (price * discountPercentage) / 100).toFixed(2))
+	// const roundedPrice = discountPrice.toFixed(2);
+	// const roundedFloatPrice = parseFloat(roundedPrice);
 
 	const { addToWishList, wishList } = useWishList((state) => state);
 
 	return (
 		<div className="group min-w-[270px] shadow-lg cursor-pointer rounded group">
 			<div className="relative h-[250px] flex  bg-secondary p-3">
-				{isDiscount && (
+				{discountPercentage && (
 					<div className="absolute">
 						<span className="font-poppins z-10 font-medium text-sm bg-secondary2 py-1 px-3 text-text rounded">
 							-{discountPercentage}%
@@ -49,9 +48,17 @@ const ProductCard: React.FC<IProductCardProps> = ({
 				<h4 className="font-poppins text-black font-medium">{title}</h4>
 				<div className="flex items-center gap-4">
 					<p className="text-secondary2 font-medium font-poppins">
-						${isDiscount ? roundedFloatPrice : price}
+						$
+						{discountPercentage
+							? parseFloat(
+									(
+										price -
+										(price * discountPercentage) / 100
+									).toFixed(2)
+							  )
+							: price}
 					</p>
-					{isDiscount && (
+					{discountPercentage && (
 						<p className="text-black font-medium font-poppins line-through opacity-50">
 							${price}
 						</p>
