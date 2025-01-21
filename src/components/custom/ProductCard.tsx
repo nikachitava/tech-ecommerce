@@ -22,13 +22,12 @@ const ProductCard: React.FC<IProductCardProps> = ({
 		<div className="group min-w-[270px] shadow-lg cursor-pointer rounded group">
 			<div className="relative h-[250px] flex justify-center bg-secondary p-3">
 				{discountPercent && (
-					<div className="absolute">
+					<div className="absolute left-[10px]">
 						<span className="font-poppins z-10 font-medium text-sm bg-secondary2 py-1 px-3 text-text rounded">
 							-{discountPercent}%
 						</span>
 					</div>
 				)}
-				<p className="text-xl">{discountPercent}</p>
 				<img src={thumbnail} alt={thumbnail} className="" />
 				<div className="absolute right-[12px] top-0">
 					{heartIcon && (
