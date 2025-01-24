@@ -60,7 +60,12 @@ const ProductCard: React.FC<IProductCardProps> = ({
 					onClick={(event) => {
 						event.stopPropagation();
 						event.preventDefault();
-						addToCart(id);
+						addToCart({
+							id,
+							name: title,
+							thumbnail,
+							price: isDiscountPrice,
+						});
 					}}
 				>
 					<p className="font-poppins font-medium text-text text-center py-1">
