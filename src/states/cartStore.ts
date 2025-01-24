@@ -1,106 +1,71 @@
 import { create } from "zustand";
 
-interface CartItem {
-	id: string;
-	quantity: number;
+export interface CartProductType {
+    id: string;
+    name: string;
+    thumbnail: string;
+    price: number;
 }
 
 interface CartState {
-	cartCount: number;
-	cartList: CartItem[];
-	addToCart: (id: string, quantity: number) => void;
-	removeFromCart: (id: string) => void;
-	moveAllToCart: (id: string[]) => void;
-	clearCart: () => void;
+    cartCount: number;
+    cartList: CartProductType[];
+    addToCart: (product: CartProductType) => void;
+    removeFromCart: (id: string) => void;
+    moveAllToCart: (products: CartProductType[]) => void;
+    clearCart: () => void;
 }
 
 export const useCart = create<CartState>((set) => ({
-	cartCount: JSON.parse(localStorage.getItem("Cart") || "[]").reduce(
-		(total: number, item: CartItem) => total + (item.quantity || 1),
-		0
-	),
-	cartList: JSON.parse(localStorage.getItem("Cart") || "[]"),
-	addToCart: (id, quantity = 1) =>
-		set((state) => {
-			const existingItem = state.cartList.find((item) => item.id === id);
+    cartCount: 0,
+    cartList: [],
+    addToCart: (product) =>
+        set((state) => {
+            const exists = state.cartList.some((item) => item.id === product.id);
+            if (exists) return state;
 
-			let updatedCartList;
-			if (existingItem) {
-				// If the item exists, update its quantity
-				updatedCartList = state.cartList.map((item) =>
-					item.id === id
-						? { ...item, quantity: item.quantity + quantity }
-						: item
-				);
-			} else {
-				// Otherwise, add the new item
-				updatedCartList = [...state.cartList, { id, quantity }];
-			}
+            const updatedCartList = [...state.cartList, product];
+            localStorage.setItem("Cart", JSON.stringify(updatedCartList));
 
-			const updatedCartCount = state.cartCount + quantity;
+            return {
+                cartList: updatedCartList,
+                cartCount: updatedCartList.length,
+            };
+        }),
 
-			// Save to localStorage
-			localStorage.setItem("Cart", JSON.stringify(updatedCartList));
+    removeFromCart: (id) =>
+        set((state) => {
+            const updatedCartList = state.cartList.filter((item) => item.id !== id);
+            localStorage.setItem("Cart", JSON.stringify(updatedCartList));
 
-			return {
-				cartList: updatedCartList,
-				cartCount: updatedCartCount,
-			};
-		}),
+            return {
+                cartList: updatedCartList,
+                cartCount: updatedCartList.length,
+            };
+        }),
 
-	removeFromCart: (id) =>
-		set((state) => {
-			const existingItem = state.cartList.find((item) => item.id === id);
+    moveAllToCart: (products) =>
+        set((state) => {
+            const newItems = products.filter(
+                (product) => !state.cartList.some((item) => item.id === product.id)
+            );
+            const updatedCartList = [...state.cartList, ...newItems];
+            localStorage.setItem("Cart", JSON.stringify(updatedCartList));
 
-			if (!existingItem) return state;
+            return {
+                cartList: updatedCartList,
+                cartCount: updatedCartList.length,
+            };
+        }),
 
-			let updatedCartList;
-			let updatedCartCount;
-
-			if (existingItem.quantity > 1) {
-				updatedCartList = state.cartList.map((item) =>
-					item.id === id
-						? { ...item, quantity: item.quantity - 1 }
-						: item
-				);
-				updatedCartCount = state.cartCount - 1;
-			} else {
-				updatedCartList = state.cartList.filter(
-					(item) => item.id !== id
-				);
-				updatedCartCount = state.cartCount - 1;
-			}
-
-			localStorage.setItem("Cart", JSON.stringify(updatedCartList));
-
-			return {
-				cartList: updatedCartList,
-				cartCount: updatedCartCount,
-			};
-		}),
-
-	moveAllToCart: (ids) =>
-		set((state) => {
-			const newItems = ids
-				.filter((id) => !state.cartList.some((item) => item.id === id))
-				.map((id) => ({ id, quantity: 1 }));
-
-			const updatedCartList = [...state.cartList, ...newItems];
-			const updatedCartCount = state.cartCount + newItems.length;
-
-			localStorage.setItem("Cart", JSON.stringify(updatedCartList));
-
-			return {
-				cartList: updatedCartList,
-				cartCount: updatedCartCount,
-			};
-		}),
-
-	clearCart: () => {
-		localStorage.removeItem("Cart");
-		return {
-			cartList: [],
-			cartCount: 0,
-		};
-	},
+    clearCart: () => {
+        set(() => {
+            localStorage.removeItem("Cart");
+            return {
+                cartList: [],
+                cartCount: 0,
+            };
+        })
+        
+    },
 }));
