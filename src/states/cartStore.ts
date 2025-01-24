@@ -1,11 +1,6 @@
+import { CartProductType } from "@/types/CartProductType";
 import { create } from "zustand";
 
-export interface CartProductType {
-    id: string;
-    name: string;
-    thumbnail: string;
-    price: number;
-}
 
 interface CartState {
     cartCount: number;
