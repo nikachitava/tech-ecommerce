@@ -39,7 +39,12 @@ const ProductCard: React.FC<IProductCardProps> = ({
 							onClick={(event) => {
 								event.stopPropagation();
 								event.preventDefault();
-								addToWishList(id);
+								addToWishList({
+									id: id,
+									name: title,
+									thumbnail: thumbnail,
+									price: price,
+								});
 							}}
 						/>
 					)}
