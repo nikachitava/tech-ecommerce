@@ -2,11 +2,12 @@ import { useQuery } from "@tanstack/react-query"
 import { useAxios } from "@/hooks/useAxios"
 import { ApiError } from "@/types/ApiRequest"
 import { Product } from "@/types/ProductType"
+import { CartProductType } from "@/states/cartStore";
 
-export const useGetProductsByIdQueries = (productIds: string[]) => {
+export const useGetProductsByIdQueries = (product: CartProductType[]) => {
     return useQuery({
-        queryKey: ['getProductsById', productIds],
-        queryFn: ()=> fetchProductsById(productIds)
+        queryKey: ['getProductsById', product],
+        queryFn: ()=> fetchProductsById(product)
     })
 }
 
@@ -31,8 +32,9 @@ export const useGetNewestProducts = () => {
     })
 }
 
-const fetchProductsById = async (productIds: string[]): Promise<Product[]> => {
+const fetchProductsById = async (products: CartProductType[]): Promise<Product[]> => {
     try {
+        const productIds = products.map((item) => item.id);
         const { data } = await useAxios.post('/products/getproducts', {productIds}) 
         return data;
     } catch (error: any) {
