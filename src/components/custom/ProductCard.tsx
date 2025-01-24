@@ -2,6 +2,7 @@ import heart from "/icons/heart.svg";
 import trash from "/icons/trash.svg";
 import { IProductCardProps } from "@/types/IProductCardProps";
 import { useWishList } from "@/states/wishListStore";
+import { useCart } from "@/states/cartStore";
 
 const ProductCard: React.FC<IProductCardProps> = ({
 	id,
@@ -13,6 +14,7 @@ const ProductCard: React.FC<IProductCardProps> = ({
 	thumbnail,
 }) => {
 	const { addToWishList, removeFromWishList } = useWishList((state) => state);
+	const { addToCart } = useCart((state) => state);
 
 	const isDiscountPrice = discountPercent
 		? parseFloat((price - (price * discountPercent) / 100).toFixed(2))
@@ -53,7 +55,14 @@ const ProductCard: React.FC<IProductCardProps> = ({
 						/>
 					)}
 				</div>
-				<div className="absolute bg-black bottom-0 left-0 w-full translate-y-full group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-1000">
+				<div
+					className="absolute bg-black bottom-0 left-0 w-full translate-y-full group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-1000"
+					onClick={(event) => {
+						event.stopPropagation();
+						event.preventDefault();
+						addToCart(id);
+					}}
+				>
 					<p className="font-poppins font-medium text-text text-center py-1">
 						ADD CART
 					</p>
