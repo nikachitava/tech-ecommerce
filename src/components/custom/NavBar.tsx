@@ -83,16 +83,18 @@ export const NavBar: FC = () => {
 									)}
 								</button>
 							</Link>
-							<button className="relative navbar_icons_styles">
-								<img
-									src="/icons/cart.svg"
-									alt="cart_icon"
-									className="filter invert-0 brightness-0 "
-								/>
-								<p className="font-poppins text-xs absolute top-0 right-0 text-text bg-secondary2 size-5 p-2 font-medium flex items-center justify-center rounded-full">
-									{cartCount}
-								</p>
-							</button>
+							<Link to={"/cart"}>
+								<button className="relative navbar_icons_styles">
+									<img
+										src="/icons/cart.svg"
+										alt="cart_icon"
+										className="filter invert-0 brightness-0 "
+									/>
+									<p className="font-poppins text-xs absolute top-0 right-0 text-text bg-secondary2 size-5 p-2 font-medium flex items-center justify-center rounded-full">
+										{cartCount}
+									</p>
+								</button>
+							</Link>
 							{isAuth && (
 								<button
 									onClick={toggleProfileMenu}
