@@ -1,12 +1,13 @@
 import { useGetProductsByIdQueries } from "@/api/productQueries";
 import ProductCard from "@/components/custom/ProductCard";
+import { CartProductType } from "@/types/CartProductType";
 
 interface IWishlistSection {
-	productIds: string[];
+	products: CartProductType[];
 }
 
-const WishlistsSection: React.FC<IWishlistSection> = ({ productIds }) => {
-	const { data, error } = useGetProductsByIdQueries(productIds);
+const WishlistsSection: React.FC<IWishlistSection> = ({ products }) => {
+	const { data, error } = useGetProductsByIdQueries(products);
 
 	if (error) return <h1>{error.message}</h1>;
 
