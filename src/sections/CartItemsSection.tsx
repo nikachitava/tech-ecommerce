@@ -1,6 +1,6 @@
 import { useGetProductsByIdQueries } from "@/api/productQueries";
 import CartItem from "@/components/custom/CartItem";
-import { CartProductType } from "@/states/cartStore";
+import { CartProductType } from "@/types/CartProductType";
 
 interface ICartItemsSectionProps {
 	products: CartProductType[];
