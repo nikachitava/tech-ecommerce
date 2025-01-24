@@ -29,7 +29,7 @@ const Wishlist = () => {
 				/>
 			</div>
 			<div>
-				<WishlistsSection productIds={wishList} />
+				<WishlistsSection products={wishList} />
 			</div>
 		</section>
 	);
