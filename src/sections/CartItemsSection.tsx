@@ -1,5 +1,5 @@
 import { useGetProductsByIdQueries } from "@/api/productQueries";
-import CartItem from "@/pages/CartItem";
+import CartItem from "@/components/custom/CartItem";
 import { CartProductType } from "@/states/cartStore";
 
 interface ICartItemsSectionProps {
