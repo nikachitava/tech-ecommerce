@@ -7,6 +7,7 @@ import MobileNavBar from "./MobileNavBar";
 import ProfileMenu from "./ProfileMenu";
 import { useAuth } from "@/states/authStore";
 import { useWishList } from "@/states/wishListStore";
+import { useCart } from "@/states/cartStore";
 
 export const NavBar: FC = () => {
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -22,6 +23,7 @@ export const NavBar: FC = () => {
 		setIsProfileMenuOpen((isProfileMenuOpen) => !isProfileMenuOpen);
 
 	const { wishCount } = useWishList((state) => state);
+	const { cartCount } = useCart((state) => state);
 
 	const filteredMenuItems = menuItems.filter(
 		(item) => !(isAuth && item.translationKey === "auth")
@@ -88,7 +90,7 @@ export const NavBar: FC = () => {
 									className="filter invert-0 brightness-0 "
 								/>
 								<p className="font-poppins text-xs absolute top-0 right-0 text-text bg-secondary2 size-5 p-2 font-medium flex items-center justify-center rounded-full">
-									2
+									{cartCount}
 								</p>
 							</button>
 							{isAuth && (
