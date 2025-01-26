@@ -71,6 +71,7 @@ const ProductCard: React.FC<IProductCardProps> = ({
 							thumbnail,
 							price: isDiscountPrice,
 							quantity: 1,
+							discount: isDiscountPrice,
 						});
 					}}
 				>

@@ -1,5 +1,11 @@
+import BillingForm from "@/components/custom/BillingForm";
+
 const CheckoutPage = () => {
-	return <div>CheckoutPage</div>;
+	return (
+		<section className="container min-h-screen pt-20">
+			<BillingForm />
+		</section>
+	);
 };
 
 export default CheckoutPage;

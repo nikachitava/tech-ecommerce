@@ -7,9 +7,14 @@ import { useNavigate } from "react-router-dom";
 const Cart = () => {
 	const navigate = useNavigate();
 
-	const { cartCount, cartList, clearCart, calculateTotalPrice } = useCart(
-		(state) => state
-	);
+	const {
+		cartCount,
+		cartList,
+		clearCart,
+		shippingPrice,
+		sumPrice,
+		totalPrice,
+	} = useCart((state) => state);
 
 	if (cartCount === 0) {
 		return (
@@ -20,10 +25,6 @@ const Cart = () => {
 			</section>
 		);
 	}
-
-	const summaryPrice = calculateTotalPrice();
-	const shipping = 0;
-	const totalPrice = summaryPrice + shipping;
 
 	return (
 		<section className="container min-h-screen">
@@ -57,9 +58,10 @@ const Cart = () => {
 						/>
 					</div>
 					<CartTotal
-						subtotal={summaryPrice}
-						shipping={shipping}
+						subtotal={sumPrice}
+						shipping={shippingPrice}
 						total={totalPrice}
+						onClick={() => navigate("/checkout")}
 					/>
 				</div>
 			</div>
