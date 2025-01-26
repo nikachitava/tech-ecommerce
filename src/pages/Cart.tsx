@@ -1,6 +1,7 @@
 import { useCart } from "@/states/cartStore";
 import CartItemsSection from "@/sections/CartItemsSection";
 import CustomButton from "@/components/custom/CustomButton";
+import CartTotal from "@/components/custom/CartTotal";
 
 const Cart = () => {
 	const { cartCount, cartList, clearCart } = useCart((state) => state);
@@ -34,13 +35,19 @@ const Cart = () => {
 					<h1 className="text-right font-medium">Subtotal</h1>
 				</div>
 				<CartItemsSection products={cartList} />
-				<div className="mt-16 flex justify-center">
-					<CustomButton
-						filled
-						title="Proceed to Checkout"
-						onClick={() => {}}
-						otherStyles="px-12 py-4 text-white"
-					/>
+				<div className="my-10">
+					<hr />
+				</div>
+				<div className="mt-16 flex justify-between">
+					<div>
+						<CustomButton
+							filled
+							title="Proceed to Checkout"
+							onClick={() => {}}
+							otherStyles="px-12 py-4 text-white"
+						/>
+					</div>
+					<CartTotal />
 				</div>
 			</div>
 		</section>
