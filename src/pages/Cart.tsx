@@ -2,8 +2,11 @@ import { useCart } from "@/states/cartStore";
 import CartItemsSection from "@/sections/CartItemsSection";
 import CustomButton from "@/components/custom/CustomButton";
 import CartTotal from "@/components/custom/CartTotal";
+import { useNavigate } from "react-router-dom";
 
 const Cart = () => {
+	const navigate = useNavigate();
+
 	const { cartCount, cartList, clearCart, calculateTotalPrice } = useCart(
 		(state) => state
 	);
@@ -48,8 +51,8 @@ const Cart = () => {
 					<div>
 						<CustomButton
 							filled
-							title="Proceed to Checkout"
-							onClick={() => {}}
+							title="Back to shop"
+							onClick={() => navigate("/")}
 							otherStyles="px-12 py-4 text-white"
 						/>
 					</div>
