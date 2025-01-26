@@ -4,7 +4,9 @@ import CustomButton from "@/components/custom/CustomButton";
 import CartTotal from "@/components/custom/CartTotal";
 
 const Cart = () => {
-	const { cartCount, cartList, clearCart } = useCart((state) => state);
+	const { cartCount, cartList, clearCart, calculateTotalPrice } = useCart(
+		(state) => state
+	);
 
 	if (cartCount === 0) {
 		return (
@@ -47,7 +49,11 @@ const Cart = () => {
 							otherStyles="px-12 py-4 text-white"
 						/>
 					</div>
-					<CartTotal />
+					<CartTotal
+						subtotal={0}
+						shipping={0}
+						total={calculateTotalPrice()}
+					/>
 				</div>
 			</div>
 		</section>
