@@ -2,14 +2,21 @@ import { useQuery } from "@tanstack/react-query"
 import { useAxios } from "@/hooks/useAxios"
 import { ApiError } from "@/types/ApiRequest"
 import { Product } from "@/types/ProductType"
-import { CartProductType } from "@/states/cartStore";
+import { CartProductType } from "@/types/CartProductType"
+import { useMemo } from "react"
 
-export const useGetProductsByIdQueries = (product: CartProductType[]) => {
+export const useGetProductsByIdQueries = (products: CartProductType[]) => {
+    const productIds = useMemo(() => products.map((product) => product.id), [products]);
+
     return useQuery({
-        queryKey: ['getProductsById', product],
-        queryFn: ()=> fetchProductsById(product)
+        queryKey: ['getProductsById', productIds],
+        queryFn: ()=> fetchProductsById(productIds),
+        enabled: productIds.length > 0, 
+        retry: 2, 
+        staleTime: 1000 * 60 * 5
     })
 }
+
 
 export const useGetProductQueries = () => {
     return useQuery<Product[], ApiError>({
@@ -32,11 +39,10 @@ export const useGetNewestProducts = () => {
     })
 }
 
-const fetchProductsById = async (products: CartProductType[]): Promise<Product[]> => {
+const fetchProductsById = async (productIds: string[]): Promise<Product[]> => {
     try {
-        const productIds = products.map((item) => item.id);
-        const { data } = await useAxios.post('/products/getproducts', {productIds}) 
-        return data;
+        const response = await useAxios.post("/products/getproducts", { productIds });
+    return response.data;
     } catch (error: any) {
         throw {
             message: error?.response?.data?.message || error?.message || 'Failed to fetch products',

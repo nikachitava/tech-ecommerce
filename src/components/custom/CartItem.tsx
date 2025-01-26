@@ -12,7 +12,11 @@ interface ICartItem {
 const CartItem: React.FC<ICartItem> = ({ id, image, title, price }) => {
 	const { removeFromCart } = useCart((state) => state);
 
-	const subtotal = price * 12;
+	const cartItem = useCart((state) =>
+		state.cartList.find((item) => item.id === id)
+	);
+
+	const subtotal = price * (cartItem?.quantity || 1);
 	return (
 		<div className="grid grid-cols-4 items-center">
 			<div className="flex items-center gap-4 relative">
@@ -27,7 +31,10 @@ const CartItem: React.FC<ICartItem> = ({ id, image, title, price }) => {
 			</div>
 			<div className="text-center font-poppins">$ {price}</div>
 			<div className="flex items-center justify-center">
-				<QuantityCounter />
+				<QuantityCounter
+					productId={id}
+					currentQuantity={cartItem?.quantity || 1}
+				/>
 			</div>
 			<div className="text-right font-poppins">$ {subtotal}</div>
 		</div>
