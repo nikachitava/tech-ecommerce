@@ -1,9 +1,9 @@
 import { useGetProductsByIdQueries } from "@/api/productQueries";
 import ProductCard from "@/components/custom/ProductCard";
-import { CartProductType } from "@/types/CartProductType";
+import { WishProductType } from "@/types/CartProductType";
 
 interface IWishlistSection {
-	products: CartProductType[];
+	products: WishProductType[];
 }
 
 const WishlistsSection: React.FC<IWishlistSection> = ({ products }) => {

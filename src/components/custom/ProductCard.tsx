@@ -70,6 +70,7 @@ const ProductCard: React.FC<IProductCardProps> = ({
 							name: title,
 							thumbnail,
 							price: isDiscountPrice,
+							quantity: 1,
 						});
 					}}
 				>

@@ -1,10 +1,10 @@
-import { CartProductType } from "@/types/CartProductType";
+import { WishProductType } from "@/types/CartProductType";
 import { create } from "zustand";
 
 interface WishListState {
 	wishCount: number;
-	wishList: CartProductType[];
-	addToWishList: (product: CartProductType) => void;
+	wishList: WishProductType[];
+	addToWishList: (product: WishProductType) => void;
 	removeFromWishList: (id: string) => void;
 	clearWishList: () => void;
 }

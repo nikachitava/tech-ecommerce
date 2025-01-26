@@ -2,10 +2,10 @@ import { useQuery } from "@tanstack/react-query"
 import { useAxios } from "@/hooks/useAxios"
 import { ApiError } from "@/types/ApiRequest"
 import { Product } from "@/types/ProductType"
-import { CartProductType } from "@/types/CartProductType"
+import { CartProductType, WishProductType } from "@/types/CartProductType"
 import { useMemo } from "react"
 
-export const useGetProductsByIdQueries = (products: CartProductType[]) => {
+export const useGetProductsByIdQueries = (products: CartProductType[] | WishProductType[]) => {
     const productIds = useMemo(() => products.map((product) => product.id), [products]);
 
     return useQuery({
