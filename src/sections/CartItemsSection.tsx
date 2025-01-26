@@ -26,7 +26,17 @@ const CartItemsSection: React.FC<ICartItemsSectionProps> = ({ products }) => {
 					key={item._id}
 					id={item._id}
 					image={item.thumbnail}
-					price={item.price}
+					price={
+						item.discountPercent
+							? parseFloat(
+									(
+										item.price -
+										(item.price * item.discountPercent) /
+											100
+									).toFixed(2)
+							  )
+							: item.price
+					}
 					title={item.name}
 				/>
 			))}

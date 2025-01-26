@@ -11,7 +11,7 @@ interface CartState {
     clearCart: () => void;
     updateQuantity: (productId: string, quantity: number) => void;
     updateLocalStorage: (cartList: CartProductType[]) => { cartList: CartProductType[]; cartCount: number };
-    calculateTotal: (cartList: CartProductType[]) => number;
+    calculateTotalPrice: () => number;
 }
 
 export const useCart = create<CartState>()(
@@ -80,7 +80,17 @@ export const useCart = create<CartState>()(
                     localStorage.removeItem("Cart");
                     return { cartList: [], cartCount: 0 };
                 }),
-            calculateTotal: (list) => list.reduce((sum, p) => sum + p.quantity, 0),
+                calculateTotalPrice: () => {
+                    const cartList = get().cartList; 
+                
+                    return cartList.reduce((sum, item) => {
+                        const priceAfterDiscount = item.discount 
+                            ? item.price - (item.price * item.discount / 100) 
+                            : item.price;
+                        
+                        return sum + (priceAfterDiscount * item.quantity || 1);
+                    }, 0);
+                }
         }),
         {
             name: "cart-storage",

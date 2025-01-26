@@ -4,6 +4,7 @@ export interface CartProductType {
     thumbnail: string;
     price: number;
     quantity: number;
+    discount: number;
 }
 
 export interface WishProductType {

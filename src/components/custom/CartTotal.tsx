@@ -1,21 +1,27 @@
 import CustomButton from "./CustomButton";
 
-const CartTotal = () => {
+interface ICartTotal {
+	subtotal: number;
+	shipping: number;
+	total: number;
+}
+
+const CartTotal: React.FC<ICartTotal> = ({ subtotal, shipping, total }) => {
 	return (
 		<div className="space-y-4 min-w-[300px] max-w-lg">
 			<div className="flex items-center justify-between">
 				<p>Subtotal</p>
-				<p>$1750</p>
+				<p>${subtotal}</p>
 			</div>
 			<hr />
 			<div className="flex items-center justify-between">
 				<p>Shpping</p>
-				<p>Free</p>
+				<p>${shipping}</p>
 			</div>
 			<hr />
 			<div className="flex items-center justify-between">
 				<p>Total</p>
-				<p>$1750</p>
+				<p>${total}</p>
 			</div>
 			<div className="text-right">
 				<CustomButton
