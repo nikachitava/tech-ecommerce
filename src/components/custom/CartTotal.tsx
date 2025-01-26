@@ -8,7 +8,7 @@ interface ICartTotal {
 
 const CartTotal: React.FC<ICartTotal> = ({ subtotal, shipping, total }) => {
 	return (
-		<div className="space-y-4 min-w-[300px] max-w-lg">
+		<div className="space-y-4 min-w-[300px] max-w-lg font-poppins">
 			<div className="flex items-center justify-between">
 				<p>Subtotal</p>
 				<p>${subtotal}</p>
@@ -16,14 +16,14 @@ const CartTotal: React.FC<ICartTotal> = ({ subtotal, shipping, total }) => {
 			<hr />
 			<div className="flex items-center justify-between">
 				<p>Shpping</p>
-				<p>${shipping}</p>
+				<p>{shipping === 0 ? "Free" : shipping}</p>
 			</div>
 			<hr />
 			<div className="flex items-center justify-between">
 				<p>Total</p>
 				<p>${total}</p>
 			</div>
-			<div className="text-right">
+			<div className="text-right mt-6">
 				<CustomButton
 					filled={false}
 					title="Proceed to Checkout"

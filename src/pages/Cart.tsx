@@ -18,6 +18,10 @@ const Cart = () => {
 		);
 	}
 
+	const summaryPrice = calculateTotalPrice();
+	const shipping = 0;
+	const totalPrice = summaryPrice + shipping;
+
 	return (
 		<section className="container min-h-screen">
 			<div className="max-w-screen-xl mx-auto my-20">
@@ -50,9 +54,9 @@ const Cart = () => {
 						/>
 					</div>
 					<CartTotal
-						subtotal={0}
-						shipping={0}
-						total={calculateTotalPrice()}
+						subtotal={summaryPrice}
+						shipping={shipping}
+						total={totalPrice}
 					/>
 				</div>
 			</div>
