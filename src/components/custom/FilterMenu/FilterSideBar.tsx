@@ -1,5 +1,3 @@
-import { Button } from "@/components/ui/button";
-import { X } from "lucide-react";
 import PriceFilter from "./PriceFilter";
 import CategoryFilter from "./CategoryFilter";
 import { CategoryType } from "@/types/CategoryType";
@@ -15,8 +13,6 @@ interface FilterSidebarProps {
 }
 
 const FilterSidebar = ({
-	isOpen,
-	onClose,
 	priceRange,
 	onPriceChange,
 	categories,
@@ -24,54 +20,33 @@ const FilterSidebar = ({
 	onCategoryChange,
 }: FilterSidebarProps) => {
 	return (
-		<>
-			{/* Overlay with blur effect */}
-			<div
-				className={`fixed inset-0 bg-black/20 backdrop-blur-sm transition-opacity duration-300 ${
-					isOpen ? "opacity-100" : "opacity-0 pointer-events-none"
-				} z-40`}
-				onClick={onClose}
-			/>
+		<div
+			className={`w-72 bg-gray-50 p-6 h-screen fixed left-0 top-0 overflow-y-auto border-r font-poppins`}
+		>
+			<div className="flex justify-between items-center mb-8">
+				<h2 className="text-2xl font-semibold bg-gradient-to-r from-filter-primary to-filter-secondary bg-clip-text text-text1">
+					Find your product
+				</h2>
+			</div>
 
-			{/* Sidebar with glass morphism effect */}
-			<div
-				className={`fixed inset-y-0 left-0 w-80 bg-white/90 backdrop-blur-md p-6 shadow-2xl transform transition-transform duration-300 ease-out ${
-					isOpen ? "translate-x-0" : "-translate-x-full"
-				} z-50 overflow-y-auto scrollbar-thin scrollbar-thumb-filter-primary/20 scrollbar-track-transparent font-poppins`}
-			>
-				<div className="flex justify-between items-center mb-8">
-					<h2 className="text-2xl font-semibold bg-gradient-to-r from-filter-primary to-filter-secondary bg-clip-text text-text1">
-						Filters
-					</h2>
-					<Button
-						variant="ghost"
-						size="icon"
-						onClick={onClose}
-						className="hover:bg-filter-primary/10 rounded-full transition-colors duration-200"
-					>
-						<X className="h-5 w-5 text-filter-primary" />
-					</Button>
+			<div className="space-y-8">
+				<div className="pb-6">
+					<PriceFilter
+						min={priceRange[0]}
+						max={priceRange[1]}
+						onChange={onPriceChange}
+					/>
 				</div>
 
-				<div className="space-y-8">
-					<div className="pb-6">
-						<PriceFilter
-							min={priceRange[0]}
-							max={priceRange[1]}
-							onChange={onPriceChange}
-						/>
-					</div>
-
-					<div className="py-6 border-t border-filter-primary/10">
-						<CategoryFilter
-							categories={categories}
-							selectedCategories={selectedCategories}
-							onCategoryChange={onCategoryChange}
-						/>
-					</div>
+				<div className="py-6 border-t border-filter-primary/10">
+					<CategoryFilter
+						categories={categories}
+						selectedCategories={selectedCategories}
+						onCategoryChange={onCategoryChange}
+					/>
 				</div>
 			</div>
-		</>
+		</div>
 	);
 };
 

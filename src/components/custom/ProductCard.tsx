@@ -3,6 +3,9 @@ import trash from "/icons/trash.svg";
 import { IProductCardProps } from "@/types/IProductCardProps";
 import { useWishList } from "@/states/wishListStore";
 import { useCart } from "@/states/cartStore";
+import { Star } from "lucide-react";
+import { Card } from "../ui/card";
+import { Button } from "../ui/button";
 
 const ProductCard: React.FC<IProductCardProps> = ({
 	id,
@@ -21,21 +24,31 @@ const ProductCard: React.FC<IProductCardProps> = ({
 		: price;
 
 	return (
-		<div className="group min-w-[270px] shadow-lg cursor-pointer rounded group">
-			<div className="relative h-[250px] flex justify-center bg-secondary p-3">
+		<Card className="group overflow-hidden transition-all duration-300 hover:shadow-xl">
+			<div className="relative aspect-square">
+				{/* Discount Badge */}
 				{discountPercent && (
-					<div className="absolute left-[10px]">
-						<span className="font-poppins z-10 font-medium text-sm bg-secondary2 py-1 px-3 text-text rounded">
+					<div className="absolute left-4 top-4 z-10">
+						<span className="bg-red-500 text-white px-2 py-1 rounded-full text-sm font-medium">
 							-{discountPercent}%
 						</span>
 					</div>
 				)}
-				<img src={thumbnail} alt={thumbnail} className="" />
-				<div className="absolute right-[12px] top-0">
+
+				{/* Product Image */}
+				<div className="relative h-full w-full bg-gray-100 p-6">
+					<img
+						src={thumbnail}
+						alt={title}
+						className="h-full w-full object-contain transition-transform duration-300 group-hover:scale-105"
+					/>
+				</div>
+
+				{/* Wishlist/Remove Icons */}
+				<div className="absolute right-4 top-4 z-10">
 					{heartIcon && (
-						<img
-							src={heart}
-							alt="heart"
+						<button
+							className="rounded-full bg-white p-2 shadow-md transition-transform hover:scale-110"
 							onClick={(event) => {
 								event.stopPropagation();
 								event.preventDefault();
@@ -46,22 +59,35 @@ const ProductCard: React.FC<IProductCardProps> = ({
 									price: isDiscountPrice,
 								});
 							}}
-						/>
+						>
+							<img
+								src={heart}
+								alt="Add to wishlist"
+								className="h-5 w-5"
+							/>
+						</button>
 					)}
 					{trashIcon && (
-						<img
-							src={trash}
-							alt="trash"
+						<button
+							className="rounded-full bg-white p-2 shadow-md transition-transform hover:scale-110"
 							onClick={(event) => {
 								event.stopPropagation();
 								event.preventDefault();
 								removeFromWishList(id);
 							}}
-						/>
+						>
+							<img
+								src={trash}
+								alt="Remove from wishlist"
+								className="h-5 w-5"
+							/>
+						</button>
 					)}
 				</div>
+
+				{/* Add to Cart Overlay */}
 				<div
-					className="absolute bg-black bottom-0 left-0 w-full translate-y-full group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-1000"
+					className="absolute inset-0 flex items-center justify-center bg-black/60 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
 					onClick={(event) => {
 						event.stopPropagation();
 						event.preventDefault();
@@ -75,25 +101,38 @@ const ProductCard: React.FC<IProductCardProps> = ({
 						});
 					}}
 				>
-					<p className="font-poppins font-medium text-text text-center py-1">
-						ADD CART
-					</p>
+					<Button
+						variant="secondary"
+						className="transform translate-y-4 transition-transform duration-300 group-hover:translate-y-0"
+					>
+						Add to Cart
+					</Button>
 				</div>
 			</div>
-			<div className="pt-4 space-y-2">
-				<h4 className="font-poppins text-black font-medium">{title}</h4>
-				<div className="flex items-center gap-4">
-					<p className="text-secondary2 font-medium font-poppins">
-						${isDiscountPrice}
-					</p>
-					{discountPercent && (
-						<p className="text-black font-medium font-poppins line-through opacity-50">
-							${price}
-						</p>
-					)}
+
+			{/* Product Info */}
+			<div className="space-y-3 p-4">
+				<h3 className="line-clamp-2 min-h-[2.5rem] text-sm font-medium text-gray-900">
+					{title}
+				</h3>
+				<div className="flex items-center justify-between">
+					<div className="flex flex-col">
+						<span className="text-lg font-bold text-gray-900">
+							${isDiscountPrice}
+						</span>
+						{discountPercent && (
+							<span className="text-sm text-gray-500 line-through">
+								${price}
+							</span>
+						)}
+					</div>
+					<div className="flex items-center">
+						<Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
+						<span className="ml-1 text-sm text-gray-600">4.5</span>
+					</div>
 				</div>
 			</div>
-		</div>
+		</Card>
 	);
 };
 

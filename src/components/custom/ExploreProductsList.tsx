@@ -18,7 +18,7 @@ const ExploreProductsList: React.FC<IProductListProps> = ({
 	if (isLoading) return <Loader />;
 	if (error) return <h1>{error.message}</h1>;
 	return (
-		<div className="flex flex-col items-center justify-between gap-10 md:flex-row md:flex-wrap">
+		<div className="grid grid-cols-6 gap-5">
 			{products?.map((product) => (
 				<Link to={`/product/${product._id}`} key={product._id}>
 					<ProductCard
