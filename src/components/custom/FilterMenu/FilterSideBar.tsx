@@ -3,8 +3,6 @@ import CategoryFilter from "./CategoryFilter";
 import { CategoryType } from "@/types/CategoryType";
 
 interface FilterSidebarProps {
-	isOpen: boolean;
-	onClose: () => void;
 	priceRange: [number, number];
 	onPriceChange: (value: number, type: "min" | "max") => void;
 	categories: CategoryType[] | undefined;
