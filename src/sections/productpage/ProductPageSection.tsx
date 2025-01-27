@@ -67,7 +67,6 @@ const ProductPageSection = ({
 						</p>
 						<hr className="w-full h-1 bg-black" />
 						<div className="flex  justify-between ">
-							{/* <QuantityCounter /> */}
 							<CustomButton
 								filled
 								onClick={() => {}}
