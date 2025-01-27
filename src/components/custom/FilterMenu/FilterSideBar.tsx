@@ -7,7 +7,7 @@ interface FilterSidebarProps {
 	onPriceChange: (value: number, type: "min" | "max") => void;
 	categories: CategoryType[] | undefined;
 	selectedCategories: string[];
-	onCategoryChange: (categoryId: string) => void;
+	onCategoryChange: (categoryId: string[]) => void;
 }
 
 const FilterSidebar = ({
