@@ -1,4 +1,3 @@
-import { Checkbox } from "../ui/checkbox";
 import CustomButton from "./CustomButton";
 
 interface ICartTotal {
