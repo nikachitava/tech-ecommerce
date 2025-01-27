@@ -1,39 +1,50 @@
-import { Slider } from "@/components/ui/slider";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 
 interface PriceFilterProps {
 	min: number;
 	max: number;
-	value: [number, number];
-	onChange: (value: [number, number]) => void;
+	onChange: (value: number, type: "min" | "max") => void;
 }
 
-const PriceFilter = ({ min, max, value, onChange }: PriceFilterProps) => {
+const PriceFilter = ({ min, max, onChange }: PriceFilterProps) => {
 	return (
-		<div className="space-y-6">
-			<h3 className="text-lg font-medium bg-gradient-to-r from-filter-primary to-filter-secondary bg-clip-text text-text1">
+		<div className="space-y-4 p-4 bg-white rounded-lg shadow-sm">
+			<h3 className="mb-4 text-lg font-medium bg-gradient-to-r from-filter-primary to-filter-secondary bg-clip-text text-text1">
 				Price Range
 			</h3>
-			<Slider
-				defaultValue={value}
-				max={max}
-				min={min}
-				step={1}
-				onValueChange={(vals) => onChange(vals as [number, number])}
-				className="w-full"
-			/>
-			<div className="flex justify-between items-center gap-4">
-				<div className="px-4 py-2 bg-gradient-to-r from-filter-primary/5 to-filter-secondary/5 rounded-lg backdrop-blur-sm flex-1">
-					<span className="text-sm text-filter-primary/70">$</span>
-					<span className="text-sm font-medium text-filter-text ml-1">
-						{value[0]}
-					</span>
+			<div className="grid grid-cols-2 gap-4">
+				<div className="space-y-2">
+					<Label htmlFor="min-price" className="text-gray-700">
+						Min Price ($)
+					</Label>
+					<Input
+						id="min-price"
+						type="number"
+						min="0"
+						value={min}
+						onChange={(e) =>
+							onChange(Number(e.target.value), "min")
+						}
+						className="w-full text-gray-700"
+						placeholder="Min price"
+					/>
 				</div>
-				<div className="border-b-2 border-filter-primary/20 w-4" />
-				<div className="px-4 py-2 bg-gradient-to-r from-filter-primary/5 to-filter-secondary/5 rounded-lg backdrop-blur-sm flex-1">
-					<span className="text-sm text-filter-primary/70">$</span>
-					<span className="text-sm font-medium text-filter-text ml-1">
-						{value[1]}
-					</span>
+				<div className="space-y-2">
+					<Label htmlFor="max-price" className="text-gray-700">
+						Max Price ($)
+					</Label>
+					<Input
+						id="max-price"
+						type="number"
+						min="0"
+						value={max}
+						onChange={(e) =>
+							onChange(Number(e.target.value), "max")
+						}
+						className="w-full text-gray-700"
+						placeholder="Max price"
+					/>
 				</div>
 			</div>
 		</div>

@@ -8,7 +8,7 @@ interface FilterSidebarProps {
 	isOpen: boolean;
 	onClose: () => void;
 	priceRange: [number, number];
-	onPriceChange: (value: [number, number]) => void;
+	onPriceChange: (value: number, type: "min" | "max") => void;
 	categories: CategoryType[] | undefined;
 	selectedCategories: string[];
 	onCategoryChange: (categoryId: string) => void;
@@ -56,9 +56,8 @@ const FilterSidebar = ({
 				<div className="space-y-8">
 					<div className="pb-6">
 						<PriceFilter
-							min={0}
-							max={1000}
-							value={priceRange}
+							min={priceRange[0]}
+							max={priceRange[1]}
 							onChange={onPriceChange}
 						/>
 					</div>
