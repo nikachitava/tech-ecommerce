@@ -26,13 +26,15 @@ const FilterProducts = () => {
 	const categories = useGetCategoriesQuery();
 	const { data, isLoading } = useGetProductQueries();
 
+	const filterdData = data?.filter(
+		(item) => item.price > priceRange[0] && item.price < priceRange[1]
+	);
+
 	if (isLoading) return <Loader />;
 
 	return (
 		<div className="min-h-screen bg-gradient-to-br from-white to-filter-light/30">
 			<div className="container mx-auto px-4 py-8">
-				<h1>Min Price ${priceRange[0]}</h1>
-				<h1>Max Price ${priceRange[1]}</h1>
 				<div className="flex justify-between items-center mb-8">
 					<Button
 						onClick={() => setIsFilterOpen(true)}
@@ -55,8 +57,8 @@ const FilterProducts = () => {
 				/>
 
 				<div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
-					{data &&
-						data.map((product) => (
+					{filterdData &&
+						filterdData.map((product) => (
 							<Link
 								to={`/product/${product._id}`}
 								key={product._id}
