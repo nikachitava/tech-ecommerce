@@ -2,7 +2,6 @@ import BuyServices from "@/components/custom/BuyServices";
 import CustomButton from "@/components/custom/CustomButton";
 import Loader from "@/components/custom/Loader";
 import ProductPreviewImages from "@/components/custom/ProductPreviewImages";
-import QuantityCounter from "@/components/custom/QuantityCounter";
 import { ApiError } from "@/types/ApiRequest";
 import { Product } from "@/types/ProductType";
 
