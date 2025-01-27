@@ -3,8 +3,8 @@ import { create } from "zustand";
 interface FilterState {
     priceRange: [number, number];
     setPriceRange: (value: number, type: 'min' | 'max') => void;
-    category: string;
-    setCategory: (categoryId: string) => void;
+    categories: string[];
+    setCategories: (categoryId: string[]) => void;
 }
 
 
@@ -14,6 +14,6 @@ export const useFilter = create<FilterState>((set)=> ({
         set((state) => ({
             priceRange: type === 'min' ? [value, state.priceRange[1]] : [state.priceRange[0], value],
         })),
-    category: '',
-    setCategory: (category) => set({category})
+    categories: [],
+    setCategories: (categories) => set({categories})
 }))
