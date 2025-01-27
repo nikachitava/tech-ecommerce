@@ -54,16 +54,16 @@ export const useAuth = create<authStoreTypes>((set) => ({
                 currentUser: response.data.user,
             });
 
-        } catch (error) {
-            if (error instanceof AxiosError) {
-                const authError: AuthError = new Error(
-                  error.response?.data?.message || "Failed to sign in"
-                );
-                authError.code = error.code;
-                authError.statusCode = error.response?.status;
-                throw authError;
-              }
-              throw new Error("An unexpected error occurred");
+        } catch (error: any) {
+            if (error.response.status === 401) {
+				const errorType = error.response.data.errorType;
+
+				if (errorType === "INVALID_EMAIL") {
+					throw new Error(errorType);
+				} else if (errorType === "INVALID_PASSWORD") {
+					throw new Error(errorType);
+				}
+			}
         }
 	},
 	logout: async () => {

@@ -32,8 +32,19 @@ const AuthFormSection = () => {
 		try {
 			await signIn(values);
 			navigate("/");
-		} catch (error) {
-			console.log(error);
+		} catch (error: any) {
+			if (error.message === "INVALID_EMAIL") {
+				form.setError("email", {
+					type: "manual",
+					message: "Enter correct email",
+				});
+			}
+			if (error.message === "INVALID_PASSWORD") {
+				form.setError("password", {
+					type: "manual",
+					message: "Enter valid password",
+				});
+			}
 		}
 	};
 
