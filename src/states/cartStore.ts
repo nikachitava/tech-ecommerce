@@ -14,7 +14,7 @@ interface CartState {
     clearCart: () => void;
     updateQuantity: (productId: string, quantity: number) => void;
     updateLocalStorage: (cartList: CartProductType[]) => { cartList: CartProductType[]; cartCount: number };
-    calculateTotalPrice: () => { sumPrice: string, shippingPrice: string, totalPrice: string };
+    calculateTotalPrice: (cartList: CartProductType[]) => { sumPrice: string; shippingPrice: string; totalPrice: string };
 }
 
 export const useCart = create<CartState>()(
@@ -32,11 +32,23 @@ export const useCart = create<CartState>()(
                 return { cartList, cartCount: totalQuantity };
             },
 
-            addToCart: (product) =>
-                set((state) => {
-                    const existingProductIndex = state.cartList.findIndex(item => item.id === product.id);
+            calculateTotalPrice: (cartList: CartProductType[]) => {
+                const sumPrice = cartList.reduce((sum, item) => sum + item.price * (item.quantity || 1), 0);
+                const shippingPrice = parseFloat(get().shippingPrice);
+                const totalPrice = sumPrice + shippingPrice;
 
+                return {
+                    sumPrice: sumPrice.toFixed(2),
+                    shippingPrice: shippingPrice.toFixed(2),
+                    totalPrice: totalPrice.toFixed(2),
+                };
+            },
+
+            addToCart: (product: CartProductType) =>
+                set((state) => {
+                    const existingProductIndex = state.cartList.findIndex((item) => item.id === product.id);
                     const updatedCartList = [...state.cartList];
+
                     if (existingProductIndex > -1) {
                         updatedCartList[existingProductIndex] = {
                             ...updatedCartList[existingProductIndex],
@@ -47,21 +59,21 @@ export const useCart = create<CartState>()(
                     }
 
                     const { cartList, cartCount } = get().updateLocalStorage(updatedCartList);
-                    const { sumPrice, shippingPrice, totalPrice } = get().calculateTotalPrice();
+                    const { sumPrice, shippingPrice, totalPrice } = get().calculateTotalPrice(cartList);
 
                     return { cartList, cartCount, sumPrice, shippingPrice, totalPrice };
                 }),
 
-            removeFromCart: (id) =>
+            removeFromCart: (id: string) =>
                 set((state) => {
                     const updatedCartList = state.cartList.filter((item) => item.id !== id);
                     const { cartList, cartCount } = get().updateLocalStorage(updatedCartList);
-                    const { sumPrice, shippingPrice, totalPrice } = get().calculateTotalPrice();
+                    const { sumPrice, shippingPrice, totalPrice } = get().calculateTotalPrice(cartList);
 
                     return { cartList, cartCount, sumPrice, shippingPrice, totalPrice };
                 }),
 
-            moveAllToCart: (products) =>
+            moveAllToCart: (products: CartProductType[]) =>
                 set((state) => {
                     const updatedCartList = [
                         ...state.cartList,
@@ -71,15 +83,15 @@ export const useCart = create<CartState>()(
                     ];
 
                     const { cartList, cartCount } = get().updateLocalStorage(updatedCartList);
-                    const { sumPrice, shippingPrice, totalPrice } = get().calculateTotalPrice();
+                    const { sumPrice, shippingPrice, totalPrice } = get().calculateTotalPrice(cartList);
 
                     return { cartList, cartCount, sumPrice, shippingPrice, totalPrice };
                 }),
 
-            updateQuantity: (productId, quantity) =>
+            updateQuantity: (productId: string, quantity: number) =>
                 set((state) => {
                     const updatedCartList = [...state.cartList];
-                    const productIndex = updatedCartList.findIndex(item => item.id === productId);
+                    const productIndex = updatedCartList.findIndex((item) => item.id === productId);
 
                     if (productIndex === -1) return state;
 
@@ -89,7 +101,7 @@ export const useCart = create<CartState>()(
                     };
 
                     const { cartList, cartCount } = get().updateLocalStorage(updatedCartList);
-                    const { sumPrice, shippingPrice, totalPrice } = get().calculateTotalPrice();
+                    const { sumPrice, shippingPrice, totalPrice } = get().calculateTotalPrice(cartList);
 
                     return { cartList, cartCount, sumPrice, shippingPrice, totalPrice };
                 }),
@@ -99,21 +111,6 @@ export const useCart = create<CartState>()(
                     localStorage.removeItem("Cart");
                     return { cartList: [], cartCount: 0, sumPrice: "0.00", shippingPrice: "0.00", totalPrice: "0.00" };
                 }),
-
-            calculateTotalPrice: () => {
-                const cartList = get().cartList;
-                const sumPrice = cartList.reduce((sum, item) => {
-                    const priceAfterDiscount = item.discount
-                        ? item.price - (item.price * item.discount / 100)
-                        : item.price;
-                    return sum + (priceAfterDiscount * (item.quantity || 1));
-                }, 0).toFixed(2); // Format to 2 decimal places
-
-                const shippingPrice = (cartList.length > 0 ? 10 : 0).toFixed(2); // Example shipping price
-                const totalPrice = (parseFloat(sumPrice) + parseFloat(shippingPrice)).toFixed(2);
-
-                return { sumPrice, shippingPrice, totalPrice };
-            }
         }),
         {
             name: "cart-storage",
