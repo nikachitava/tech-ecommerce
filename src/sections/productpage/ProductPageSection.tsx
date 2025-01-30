@@ -22,27 +22,27 @@ const ProductPageSection = ({
 	return (
 		<section className="container my-20">
 			{data ? (
-				<div className="flex flex-col gap-20 lg:flex-row justify-between items-center">
+				<div className="flex flex-col gap-20 lg:flex-row justify-between items-start">
 					<ProductPreviewImages
 						images={data.images}
 						thumbnail={data.thumbnail}
 					/>
-					<div className="break-words space-y-6">
+					<div className="flex-1 break-words space-y-8 max-w-xl">
 						<div className="space-y-4">
-							<h1 className="font-poppins text-text2 text-2xl font-semibold">
+							<h1 className="font-poppins text-text2 text-3xl font-semibold tracking-tight">
 								{data.name}
 							</h1>
 							{data.stock > 0 ? (
-								<span className="text-sm text-button1 font-poppins font-medium">
+								<span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-green-50 text-green-700">
 									In Stock
 								</span>
 							) : (
-								<span className="text-sm text-button2 font-poppins font-medium">
+								<span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-red-50 text-red-700">
 									Out of stock
 								</span>
 							)}
-							<div className="flex items-center gap-2">
-								<h4 className="font-poppins text-secondary2 text-2xl texttex">
+							<div className="flex items-baseline gap-3">
+								<h4 className="font-poppins text-4xl font-bold">
 									$
 									{data.discountPercent
 										? parseFloat(
@@ -56,30 +56,34 @@ const ProductPageSection = ({
 										: data.price}
 								</h4>
 								{data.discountPercent && (
-									<p className="text-black font-medium font-poppins line-through opacity-50">
+									<p className="text-gray-500 font-medium font-poppins line-through">
 										${data.price}
 									</p>
 								)}
 							</div>
 						</div>
-						<p className="font-poppins text-text2 text-sm">
+						<p className="font-poppins text-gray-600 text-base leading-relaxed">
 							{data.description}
 						</p>
-						<hr className="w-full h-1 bg-black" />
-						<div className="flex  justify-between ">
+						<div className="w-full h-px bg-gray-200" />
+						<div className="flex justify-between">
 							<CustomButton
 								filled
 								onClick={() => {}}
 								title="Buy Now"
-								otherStyles="bg-secondary2 flex items-center px-12 py-3 rounded"
-								textStyles="text-text font-poppins font-medium"
+								otherStyles="flex items-center px-12 py-4 rounded-lg"
+								textStyles="text-white font-poppins font-medium"
 							/>
 						</div>
 						<BuyServices />
 					</div>
 				</div>
 			) : (
-				<h1>TRY AGAIN</h1>
+				<div className="text-center py-12">
+					<h1 className="text-xl font-medium text-gray-600">
+						Something went wrong. Please try again.
+					</h1>
+				</div>
 			)}
 		</section>
 	);
